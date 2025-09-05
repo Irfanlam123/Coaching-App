@@ -9,9 +9,11 @@ import Signup from "./pages/Signup";
 import Results from "./pages/dashboard/Results";
 import UploadMaterials from "./pages/admin/UploadMaterials";
 import AddResults from "./pages/admin/AddResults";
-import { useAuth } from "./context/AuthContext";
+import Contact from "./pages/Contact";
 import MyMaterials from "./pages/dashboard/MyMaterials";
-import Dashboard from "./pages/dashboard/Dashboard"
+import Dashboard from "./pages/dashboard/Dashboard";
+import { useAuth } from "./context/AuthContext";
+
 function PrivateRoute({ children }) {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;
@@ -26,13 +28,38 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "services", element: <Services /> },
       { path: "study-materials", element: <StudyMaterials /> },
-      { path: "dashboard", element: <Dashboard /> },
-
+      { path: "contact", element: <Contact /> },
 
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
-      
-       
+
+      // Protected Dashboard Routes
+      {
+        path: "dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/results",
+        element: (
+          <PrivateRoute>
+            <Results />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "dashboard/my-materials",
+        element: (
+          <PrivateRoute>
+            <MyMaterials />
+          </PrivateRoute>
+        ),
+      },
+
+      // Admin Routes
       { path: "admin/upload-materials", element: <UploadMaterials /> },
       { path: "admin/add-results", element: <AddResults /> },
     ],

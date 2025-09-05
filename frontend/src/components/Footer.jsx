@@ -1,4 +1,5 @@
 import { FaXTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -37,27 +38,48 @@ export default function Footer() {
 
         {/* Middle Section - Sitemap */}
         <div>
-          <h3 className="font-semibold mb-3">Site Map</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:underline">Homepage</a></li>
-            <li><a href="#" className="hover:underline">Technology</a></li>
-            <li><a href="#" className="hover:underline">Ataraxis Breast</a></li>
-            <li><a href="#" className="hover:underline">Resources & News</a></li>
-            <li><a href="#" className="hover:underline">Careers</a></li>
-            <li><a href="#" className="hover:underline">Contact Us</a></li>
-            <li><a href="#" className="hover:underline">Portal</a></li>
-          </ul>
+          <h3 className="font-semibold mb-3">Services</h3>
+          <div className="flex flex-col space-y-3 text-sm">
+          <Link to="/" className="hover:underline">
+          Homepage
+          </Link>
+          <Link to="/services" className="hover:underline">
+          Services
+          </Link>
+          <Link to="/study-materials" className="hover:underline">
+          Study Materials
+          </Link>
+          
+          <Link to="/about" className="hover:underline">
+            About Us
+          </Link> 
+          <Link to="/" className="hover:underline">
+          Careers
+          </Link>
+          </div>
         </div>
 
         {/* Right Section - Legal */}
         <div>
-          <h3 className="font-semibold mb-3">Legal</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:underline">Privacy Policy</a></li>
-            <li><a href="#" className="hover:underline">Terms of Services</a></li>
-            <li><a href="#" className="hover:underline">Lawyer’s Corners</a></li>
-          </ul>
-        </div>
+          <h3 className="font-semibold mb-3 ">Institute</h3>
+         <div className="flex flex-col space-y-3 text-sm">
+          <Link to="/contact" className="hover:underline">
+          Contact Us
+          </Link>
+          <Link to="" className="hover:underline">
+          Success Stories
+          </Link>
+          <Link to="" className="hover:underline">
+          Resourse & Blog
+          </Link>
+          <Link to="" className="hover:underline">
+          Privacy Policy
+          </Link>
+          <Link to="" className="hover:underline">
+          Terms of Services
+          </Link>  
+          </div>
+       </div> 
       </div>
 
       {/* Bottom Bar */}
