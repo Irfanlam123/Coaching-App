@@ -29,22 +29,20 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand name */}
-          <Link 
-            to="/" 
-            className="flex items-center space-x-2 group"
-          >
+          <Link to="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
-<img  className="rounded-3xl" src="./src/assets/logo.jpeg" alt="" />
+              <img
+                className="rounded-3xl"
+                src="./src/assets/logo.jpeg"
+                alt=""
+              />
             </div>
             <span className="text-xl font-bold">
-<<<<<<< HEAD
               <span className="text-white">Viraam</span>
               <span className="text-blue-300">Vani</span>
-=======
-              <span className="text-white">andu
-</span>
+
+              <span className="text-white">andu</span>
               <span className="text-blue-300">Vaani</span>
->>>>>>> b89a731a33db732f356d9199fe054f32c8032deb
             </span>
           </Link>
 
@@ -78,14 +76,27 @@ export default function Navbar() {
                   <div className="w-8 h-8 bg-[#043D3B] rounded-full flex items-center justify-center text-white font-medium shadow-sm">
                     {user.name ? user.name.charAt(0).toUpperCase() : "U"}
                   </div>
-                  <span className="text-sm text-blue-100">Hi, {user.name || "User"}</span>
+                  <span className="text-sm text-blue-100">
+                    Hi, {user.name || "User"}
+                  </span>
                 </div>
                 <button
                   onClick={handleLogout}
                   className="px-4 py-2 bg-red-500/90 hover:bg-red-600 text-white rounded-md text-sm font-medium transition-colors duration-300 flex items-center space-x-1 shadow-md hover:shadow-lg"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
                   </svg>
                   <span>Logout</span>
                 </button>
@@ -117,12 +128,36 @@ export default function Navbar() {
             >
               <span className="sr-only">Open main menu</span>
               {!isMenuOpen ? (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               ) : (
-                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               )}
             </button>
@@ -131,7 +166,13 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
+      <div
+        className={`md:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen
+            ? "max-h-96 opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
+        }`}
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-800 shadow-lg">
           {navItems.map((item) => (
             <Link
@@ -147,7 +188,7 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
-          
+
           <div className="pt-4 border-t border-blue-700">
             {user ? (
               <div className="px-3 py-2">
@@ -155,14 +196,27 @@ export default function Navbar() {
                   <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-medium">
                     {user.name ? user.name.charAt(0).toUpperCase() : "U"}
                   </div>
-                  <span className="text-sm text-blue-100">Hi, {user.name || "User"}</span>
+                  <span className="text-sm text-blue-100">
+                    Hi, {user.name || "User"}
+                  </span>
                 </div>
                 <button
                   onClick={handleLogout}
                   className="w-full px-3 py-2 bg-red-500/90 hover:bg-red-600 text-white rounded-md text-sm font-medium transition-colors duration-300 flex items-center justify-center space-x-1"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
                   </svg>
                   <span>Logout</span>
                 </button>
@@ -186,7 +240,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-        </div> 
+        </div>
       </div>
     </nav>
   );
