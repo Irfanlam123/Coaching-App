@@ -50,7 +50,7 @@ export default function App() {
           </div>
         </main>
       </div>
-      <Footer />
+     <Footer />
     </div>
   );
 }
