@@ -10,8 +10,8 @@ export const AuthProvider = ({ children }) => {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // ✅ Login function (user/admin based on role)
-  const login = async (email, password, role = "user") => {
+  // ✅ Login function with role
+  const login = async (email, password, role) => {
     try {
       const endpoint =
         role === "admin"
@@ -21,13 +21,13 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.post(endpoint, { email, password });
 
       if (res.data.success) {
-        const loggedInUser = res.data[role]; // backend se "user" ya "admin" aayega
+        const loggedInUser = { ...res.data.user, role }; // role add kiya
 
         // Save in state + localStorage
-        setUser({ ...loggedInUser, role });
-        localStorage.setItem("user", JSON.stringify({ ...loggedInUser, role }));
+        setUser(loggedInUser);
+        localStorage.setItem("user", JSON.stringify(loggedInUser));
 
-        return { success: true, role }; // return role for redirect
+        return { success: true, role };
       }
       return { success: false };
     } catch (error) {
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Signup function (sirf user ke liye, admin ka signup usually nahi hota)
+  // ✅ Signup function (only for users)
   const signup = async (name, email, password) => {
     try {
       const res = await axios.post("http://localhost:8080/api/user/signup", {
@@ -45,17 +45,13 @@ export const AuthProvider = ({ children }) => {
         password,
       });
 
-      if (res.data.success) {
-        return true; // Signup ke baad login page dikhega
-      }
-      return false;
+      return res.data.success;
     } catch (error) {
       console.error("Signup error:", error);
       return false;
     }
   };
 
-  // ✅ Logout function
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
