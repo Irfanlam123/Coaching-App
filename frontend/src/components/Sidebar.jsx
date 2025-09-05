@@ -28,7 +28,7 @@ export default function Sidebar({ onClose }) {
       )
     },
     {
-      path: "/my-materials",
+      path: "/mymatterials",
       name: "Study Materials",
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ export default function Sidebar({ onClose }) {
   };
 
   return (
-    <div className={`h-screen bg-gradient-to-b from-gray-900 to-blue-900 text-white p-4 transition-all duration-300 ease-in-out z-40 shadow-xl ${isExpanded ? 'w-64' : 'w-20'}`}>
+    <div className={`fixed left-0 top-0 h-screen bg-gradient-to-b from-gray-900 to-blue-900 text-white p-4 transition-all duration-300 ease-in-out z-40 shadow-xl overflow-y-auto ${isExpanded ? 'w-64' : 'w-20'}`}>
       
       {/* Header Section */}
       <div className="flex items-center justify-between mb-8">
@@ -139,7 +139,7 @@ export default function Sidebar({ onClose }) {
       )}
 
       {/* Logout Button */}
-      <div className="absolute bottom-4 left-4 right-4">
+      <div className="mt-8">
         <button
           onClick={handleLogout}
           className="w-full flex items-center p-3 rounded-lg bg-white text-black hover:text-white hover:bg-gray-900 transition-all duration-300 group border border-black"

@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
@@ -16,6 +15,11 @@ export default function Navbar() {
     
   ];
 
+  // Add dashboard link if user is logged in
+  if (user) {
+    navItems.push({ path: "/dashboard", name: "Dashboard" });
+  }
+
   const handleLogout = () => {
     logout();
     setIsMenuOpen(false);
@@ -28,20 +32,29 @@ export default function Navbar() {
           {/* Logo and brand name */}
           <Link 
             to="/" 
-            className="flex items-center  space-x-2 group"
+            className="flex items-center space-x-2 group"
           >
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
 <img  className="rounded-3xl" src="./src/assets/logo.jpeg" alt="" />
             </div>
             <span className="text-xl font-bold">
+<<<<<<< HEAD
               <span className="text-white">Viraam
+=======
+<<<<<<< HEAD
+              <span className="text-white">Viraam</span>
+              <span className="text-blue-300">Vani</span>
+=======
+              <span className="text-white">andu
+>>>>>>> 1f527c674a57b58b9da94c34a243cb21c1faa3b4
 </span>
               <span className="text-blue-300">Vaani</span>
+>>>>>>> b89a731a33db732f356d9199fe054f32c8032deb
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center animate-slide-in  space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -179,7 +192,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-        </div>
+        </div> 
       </div>
     </nav>
   );

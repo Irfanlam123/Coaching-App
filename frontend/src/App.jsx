@@ -1,14 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { useAuth } from "./context/AuthContext";
 import { useState, useEffect } from "react";
-// import CursorTrail from "./components/cursorTrail";
-// import FloatingParticles from "./components/cursorTrail";
 
 export default function App() {
   const { user } = useAuth();
+<<<<<<< HEAD
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   
@@ -17,15 +15,29 @@ export default function App() {
   const closeSidebar = () => setSidebarOpen(false);
 
   
+=======
+
+ 
+
+ 
+>>>>>>> 1f527c674a57b58b9da94c34a243cb21c1faa3b4
 
   return (
     <div className="relative min-h-screen flex flex-col">
-      {/* Add FloatingParticles as a background element */}
-      {/* <FloatingParticles /> */}
-      
+      {/* Navbar */}
       <header className="sticky top-0 z-50 shadow-lg">
-        <Navbar onMenuClick={toggleSidebar} />
+        <Navbar />
       </header>
+<<<<<<< HEAD
+
+      {/* Main Content (only this scrolls) */} 
+      <main className="flex-1 overflow-y-auto">
+        <div className="animate-fadeIn p-4 min-h-[calc(100vh-140px)]">
+          <Outlet />
+        </div>
+        <Footer />
+      </main>
+=======
       
       <div className="flex flex-1">
         {user && (
@@ -45,6 +57,7 @@ export default function App() {
       
       <Footer />
 
+>>>>>>> b89a731a33db732f356d9199fe054f32c8032deb
     </div>
   );
 }
