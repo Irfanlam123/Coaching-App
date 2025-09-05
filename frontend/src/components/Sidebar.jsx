@@ -142,7 +142,7 @@ export default function Sidebar({ onClose }) {
       <div className="absolute bottom-4 left-4 right-4">
         <button
           onClick={handleLogout}
-          className="w-full flex items-center p-3 rounded-lg bg-red-900/30 hover:bg-red-900/50 text-red-300 hover:text-red-100 transition-all duration-300 group border border-red-700/30"
+          className="w-full flex items-center p-3 rounded-lg bg-white text-black hover:text-white hover:bg-gray-900 transition-all duration-300 group border border-black"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

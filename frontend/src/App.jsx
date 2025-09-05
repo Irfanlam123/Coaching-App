@@ -4,7 +4,9 @@ import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { useAuth } from "./context/AuthContext";
 import { useState, useEffect } from "react";
-import FloatingParticles from "./components/cursorTrail";
+// import CursorTrail from "./components/cursorTrail";
+// import FloatingParticles from "./components/cursorTrail";
+
 export default function App() {
   const { user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
