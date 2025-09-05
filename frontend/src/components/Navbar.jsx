@@ -25,7 +25,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-lg">
+    <nav className="bg-[#043D3B] text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and brand name */}
@@ -34,11 +34,17 @@ export default function Navbar() {
             className="flex items-center space-x-2 group"
           >
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
-              <span className="text-blue-800 font-bold text-lg">V</span>
+<img  className="rounded-3xl" src="./src/assets/logo.jpeg" alt="" />
             </div>
             <span className="text-xl font-bold">
+<<<<<<< HEAD
               <span className="text-white">Viraam</span>
               <span className="text-blue-300">Vani</span>
+=======
+              <span className="text-white">andu
+</span>
+              <span className="text-blue-300">Vaani</span>
+>>>>>>> b89a731a33db732f356d9199fe054f32c8032deb
             </span>
           </Link>
 
@@ -50,8 +56,8 @@ export default function Navbar() {
                 to={item.path}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
                   location.pathname === item.path
-                    ? "text-white bg-blue-700"
-                    : "text-blue-100 hover:text-white hover:bg-blue-700/50"
+                    ? "text-white bg-[#043D3B] no-underline"
+                    : "text-blue-100  hover:text-white hover:bg-[#106865]"
                 }`}
               >
                 {item.name}
@@ -69,7 +75,7 @@ export default function Navbar() {
             {user ? (
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-medium shadow-sm">
+                  <div className="w-8 h-8 bg-[#043D3B] rounded-full flex items-center justify-center text-white font-medium shadow-sm">
                     {user.name ? user.name.charAt(0).toUpperCase() : "U"}
                   </div>
                   <span className="text-sm text-blue-100">Hi, {user.name || "User"}</span>
