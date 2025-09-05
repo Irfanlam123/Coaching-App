@@ -9,7 +9,11 @@ export default function Footer() {
         <div>
           {/* Logo */}
           <div className="flex items-center gap-2 mb-4">
-            <img className="w-7 h-4 rounded-full" src="./src/assets/footerlogo.jpeg" alt="Logo" />
+            <img
+              className="w-7 h-4 rounded-full"
+              src="./src/assets/footerlogo.jpeg"
+              alt="Logo"
+            />
             <h2 className="text-lg font-bold">Viraam Vaani</h2>
           </div>
 
@@ -36,50 +40,46 @@ export default function Footer() {
           </button>
         </div>
 
-        {/* Middle Section - Sitemap */}
+        {/* Middle Section - Quick Links */}
         <div>
-          <h3 className="font-semibold mb-3">Services</h3>
+          <h3 className="font-semibold mb-3">Quick Links</h3>
           <div className="flex flex-col space-y-3 text-sm">
-          <Link to="/" className="hover:underline">
-          Homepage
-          </Link>
-          <Link to="/services" className="hover:underline">
-          Services
-          </Link>
-          <Link to="/study-materials" className="hover:underline">
-          Study Materials
-          </Link>
-          
-          <Link to="/about" className="hover:underline">
-            About Us
-          </Link> 
-          <Link to="/" className="hover:underline">
-          Careers
-          </Link>
+            <Link to="/services" className="hover:underline">
+              Services
+            </Link>
+            <Link to="/study-materials" className="hover:underline">
+              Study Materials
+            </Link>
+            <Link to="/about" className="hover:underline">
+              About Us
+            </Link>
+            <Link to="/careers" className="hover:underline">
+              Careers
+            </Link>
           </div>
         </div>
 
         {/* Right Section - Legal */}
         <div>
-          <h3 className="font-semibold mb-3 ">Institute</h3>
-         <div className="flex flex-col space-y-3 text-sm">
-          <Link to="/contact" className="hover:underline">
-          Contact Us
-          </Link>
-          <Link to="" className="hover:underline">
-          Success Stories
-          </Link>
-          <Link to="" className="hover:underline">
-          Resourse & Blog
-          </Link>
-          <Link to="" className="hover:underline">
-          Privacy Policy
-          </Link>
-          <Link to="" className="hover:underline">
-          Terms of Services
-          </Link>  
+          <h3 className="font-semibold mb-3">Institute</h3>
+          <div className="flex flex-col space-y-3 text-sm">
+            <Link to="/contact" className="hover:underline">
+              Contact Us
+            </Link>
+            <Link to="/success" className="hover:underline">
+              Success Stories
+            </Link>
+            <Link to="/resources" className="hover:underline">
+              Resources & Blog
+            </Link>
+            <Link to="/privacy" className="hover:underline">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:underline">
+              Terms of Service
+            </Link>
           </div>
-       </div> 
+        </div>
       </div>
 
       {/* Bottom Bar */}

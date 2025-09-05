@@ -24,16 +24,17 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
+      { index: true, element: <Home /> },
       { path: "about", element: <About /> },
       { path: "services", element: <Services /> },
       { path: "study-materials", element: <StudyMaterials /> },
       { path: "contact", element: <Contact /> },
 
+      // Auth
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
 
-      // Protected Dashboard Routes
+      // User Dashboard
       {
         path: "dashboard",
         element: (
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
         ),
       },
 
-      // Admin Routes
+      // Admin routes
       { path: "admin/upload-materials", element: <UploadMaterials /> },
       { path: "admin/add-results", element: <AddResults /> },
     ],
