@@ -56,12 +56,9 @@ export default function App() {
           </div>
         </main>
       </div>
-<<<<<<< HEAD
-     <Footer />
-=======
       
       <Footer />
->>>>>>> ef77a4d4e868756d05e5d4b6fc318de4fc2cf23f
+
     </div>
   );
 }

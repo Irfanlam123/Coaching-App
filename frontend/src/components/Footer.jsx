@@ -2,14 +2,13 @@ import { FaXTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa6
 
 export default function Footer() {
   return (
-<<<<<<< HEAD
     <footer className="bg-[#043D3B] text-white relative rounded-t-2xl">
       <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
         {/* Left Section */}
         <div>
           {/* Logo */}
           <div className="flex items-center gap-2 mb-4">
-  <img  className="w-7 h-4  rounded-full" src="./src/assets/footerlogo.jpeg" alt="" />
+            <img className="w-7 h-4 rounded-full" src="./src/assets/footerlogo.jpeg" alt="Logo" />
             <h2 className="text-lg font-bold">Viraam Vaani</h2>
           </div>
 
@@ -54,7 +53,7 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-3">Legal</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className=" no-underlinehover:underline">Privacy Policy</a></li>
+            <li><a href="#" className="hover:underline">Privacy Policy</a></li>
             <li><a href="#" className="hover:underline">Terms of Services</a></li>
             <li><a href="#" className="hover:underline">Lawyer’s Corners</a></li>
           </ul>
@@ -63,14 +62,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-[#0e2322] text-center text-sm py-2">
-        Copyright © 2024 Viraam Vaani All Rights Reserved.
+        Copyright © {new Date().getFullYear()} Viraam Vaani. All Rights Reserved.
       </div>
-=======
-    <footer className="bg-blue-900 text-white text-center py-4 mt-8">
-      <p className="text-sm">
-        © {new Date().getFullYear()} Coaching Institute. 
-      </p>
->>>>>>> ef77a4d4e868756d05e5d4b6fc318de4fc2cf23f
     </footer>
   );
 }
