@@ -10,9 +10,10 @@ export default function Navbar() {
 
   const navItems = [
     { path: "/", name: "Home" },
-    { path: "/about", name: "About" },
     { path: "/services", name: "Services" },
     { path: "/study-materials", name: "Study Materials" },
+    { path: "/about", name: "About" },
+    
   ];
 
   const handleLogout = () => {
@@ -33,7 +34,7 @@ export default function Navbar() {
 <img  className="rounded-3xl" src="./src/assets/logo.jpeg" alt="" />
             </div>
             <span className="text-xl font-bold">
-              <span className="text-white">andu
+              <span className="text-white">Viraam
 </span>
               <span className="text-blue-300">Vaani</span>
             </span>
@@ -47,13 +48,13 @@ export default function Navbar() {
                 to={item.path}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
                   location.pathname === item.path
-                    ? "text-white bg-[#043D3B] no-underline"
+                    ? "text-white bg-[#0e6a67] no-underline"
                     : "text-blue-100  hover:text-white hover:bg-[#106865]"
                 }`}
               >
                 {item.name}
                 <span
-                  className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full ${
+                  className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#106865] transition-all duration-300 group-hover:w-full ${
                     location.pathname === item.path ? "w-full" : ""
                   }`}
                 ></span>
@@ -83,15 +84,16 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center space-x-3">
-                <Link
+               <Link
                   to="/login"
-                  className="px-4 py-2 rounded-md text-sm font-medium text-blue-100 hover:text-white hover:bg-blue-700/50 transition-all duration-300"
+                  className="px-4 py-2  bg-[#0b7471] hover:bg-[#106865]  text-white rounded-md text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
                 >
-                  Login
+                  Log In
                 </Link>
+                
                 <Link
                   to="/signup"
-                  className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
+                  className="px-4 py-2  bg-[#0b7471] hover:bg-[#106865]  text-white rounded-md text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
                 >
                   Sign Up
                 </Link>

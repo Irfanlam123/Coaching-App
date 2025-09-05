@@ -11,6 +11,8 @@ import Results from "./pages/dashboard/Results";
 import UploadMaterials from "./pages/admin/UploadMaterials";
 import AddResults from "./pages/admin/AddResults";
 import { useAuth } from "./context/AuthContext";
+import Contact from "./pages/Contact";
+
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
       { path: "study-materials", element: <StudyMaterials /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
+      { path: "contact", element: <Contact /> },
+
       {
         path: "dashboard",
         element: (
