@@ -5,7 +5,7 @@ const connectDB = require("./config/db");
 
 // Routes import
 const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
+// const userRoutes = require("./routes/")
 const adminRoutes = require("./routes/adminRoutes");
 
 dotenv.config();
@@ -19,7 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);   // Signup/Login
-app.use("/api/user", userRoutes);   // User-specific routes
+// app.use("/api/user", userRoutes);   // User-specific routes
 app.use("/api/admin", adminRoutes); // Admin-specific routes
 
 // Test route

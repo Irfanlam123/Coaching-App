@@ -27,20 +27,20 @@ export default function Navbar() {
           {/* Logo and brand name */}
           <Link 
             to="/" 
-            className="flex items-center space-x-2 group"
+            className="flex items-center  space-x-2 group"
           >
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
 <img  className="rounded-3xl" src="./src/assets/logo.jpeg" alt="" />
             </div>
             <span className="text-xl font-bold">
-              <span className="text-white">Viraam
+              <span className="text-white">andu
 </span>
               <span className="text-blue-300">Vaani</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center animate-slide-in  space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}

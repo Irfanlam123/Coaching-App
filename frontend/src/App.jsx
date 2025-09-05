@@ -4,6 +4,8 @@ import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { useAuth } from "./context/AuthContext";
 import { useState, useEffect } from "react";
+// import CursorTrail from "./components/cursorTrail";
+// import FloatingParticles from "./components/cursorTrail";
 
 export default function App() {
   const { user } = useAuth();
@@ -31,10 +33,14 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="relative min-h-screen flex flex-col">
+      {/* Add FloatingParticles as a background element */}
+      {/* <FloatingParticles /> */}
+      
       <header className="sticky top-0 z-50 shadow-lg">
         <Navbar onMenuClick={toggleSidebar} />
       </header>
+      
       <div className="flex flex-1">
         {user && (
           <>
@@ -50,7 +56,12 @@ export default function App() {
           </div>
         </main>
       </div>
+<<<<<<< HEAD
      <Footer />
+=======
+      
+      <Footer />
+>>>>>>> ef77a4d4e868756d05e5d4b6fc318de4fc2cf23f
     </div>
   );
 }

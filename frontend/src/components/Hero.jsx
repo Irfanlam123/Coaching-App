@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative bg-white text-gray-900 py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-slate-50 text-gray-900 py-16 md:py-24 overflow-hidden">
       {/* Background pattern with subtle animation */}
       <div className="absolute inset-0 opacity-5">
         <div 

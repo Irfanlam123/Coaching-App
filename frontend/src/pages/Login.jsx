@@ -1,55 +1,43 @@
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // default user login
-  const [error, setError] = useState("");
+  const [role, setRole] = useState("user"); // default user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
-    const success = await login(email, password, role);
-    if (success) {
-      if (role === "admin") {
+    const res = await login(email, password, role);
+
+    if (res.success) {
+      if (res.role === "admin") {
         navigate("/admin/dashboard");
       } else {
         navigate("/dashboard");
       }
     } else {
-      setError("Login failed. Try again.");
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex justify-center items-center h-screen">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-lg shadow-md w-80"
+        className="bg-white p-6 rounded shadow-md w-96"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        {error && <p className="text-red-500 mb-3 text-sm">{error}</p>}
-
-        {/* Role Selection */}
-        <select
-          className="border p-2 w-full mb-3"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option value="user">User Login</option>
-          <option value="admin">Admin Login</option>
-        </select>
+        <h2 className="text-xl font-bold mb-4">Login</h2>
 
         <input
           type="email"
           placeholder="Email"
-          className="border p-2 w-full mb-3"
+          className="w-full mb-3 p-2 border rounded"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -57,18 +45,30 @@ export default function Login() {
         <input
           type="password"
           placeholder="Password"
-          className="border p-2 w-full mb-3"
+          className="w-full mb-3 p-2 border rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
+        {/* Role select */}
+        <select
+          className="w-full mb-3 p-2 border rounded"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded w-full"
+          className="w-full bg-blue-500 text-white py-2 rounded"
         >
           Login
         </button>
       </form>
     </div>
   );
-}
+};
+
+export default Login;

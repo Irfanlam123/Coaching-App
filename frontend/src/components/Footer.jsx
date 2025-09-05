@@ -2,6 +2,7 @@ import { FaXTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa6
 
 export default function Footer() {
   return (
+<<<<<<< HEAD
     <footer className="bg-[#043D3B] text-white relative rounded-t-2xl">
       <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
         {/* Left Section */}
@@ -64,6 +65,12 @@ export default function Footer() {
       <div className="bg-[#0e2322] text-center text-sm py-2">
         Copyright © 2024 Viraam Vaani All Rights Reserved.
       </div>
+=======
+    <footer className="bg-blue-900 text-white text-center py-4 mt-8">
+      <p className="text-sm">
+        © {new Date().getFullYear()} Coaching Institute. 
+      </p>
+>>>>>>> ef77a4d4e868756d05e5d4b6fc318de4fc2cf23f
     </footer>
   );
 }
