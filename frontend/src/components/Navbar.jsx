@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
@@ -15,6 +14,11 @@ export default function Navbar() {
     { path: "/study-materials", name: "Study Materials" },
   ];
 
+  // Add dashboard link if user is logged in
+  if (user) {
+    navItems.push({ path: "/dashboard", name: "Dashboard" });
+  }
+
   const handleLogout = () => {
     logout();
     setIsMenuOpen(false);
@@ -27,20 +31,19 @@ export default function Navbar() {
           {/* Logo and brand name */}
           <Link 
             to="/" 
-            className="flex items-center  space-x-2 group"
+            className="flex items-center space-x-2 group"
           >
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
               <span className="text-blue-800 font-bold text-lg">V</span>
             </div>
             <span className="text-xl font-bold">
-              <span className="text-white">andu
-</span>
+              <span className="text-white">Viraam</span>
               <span className="text-blue-300">Vani</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center animate-slide-in  space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -177,7 +180,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-        </div>
+        </div> 
       </div>
     </nav>
   );

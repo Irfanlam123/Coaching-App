@@ -6,18 +6,18 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("user"); // default: user
+  const [emailOrUsername, setEmailOrUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // default user
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await login(email, password, role);
+    const res = await login(emailOrUsername, password, role);
 
     if (res.success) {
-      if (res.role === "admin") {
-        navigate("/admin/dashboard");
+      if (role === "admin") {
+        navigate("/admin");
       } else {
         navigate("/dashboard");
       }
@@ -27,42 +27,58 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md w-96"
+        className="bg-white p-8 rounded-2xl shadow-md w-96"
       >
-        <h2 className="text-xl font-bold mb-4">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          {role === "admin" ? "Admin Login" : "User Login"}
+        </h2>
 
+        {/* Role Switch */}
+        <div className="flex justify-center mb-4 space-x-4">
+          <button
+            type="button"
+            className={`px-4 py-2 rounded-lg ${
+              role === "user" ? "bg-blue-600 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setRole("user")}
+          >
+            User
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 rounded-lg ${
+              role === "admin" ? "bg-blue-600 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setRole("admin")}
+          >
+            Admin
+          </button>
+        </div>
+
+        {/* Email/Username */}
         <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder={role === "admin" ? "Username" : "Email"}
+          value={emailOrUsername}
+          onChange={(e) => setEmailOrUsername(e.target.value)}
+          className="w-full mb-4 p-2 border rounded-lg"
         />
 
+        {/* Password */}
         <input
           type="password"
           placeholder="Password"
-          className="w-full mb-3 p-2 border rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="w-full mb-4 p-2 border rounded-lg"
         />
-
-        {/* Role select */}
-        <select
-          className="w-full mb-3 p-2 border rounded"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg"
         >
           Login
         </button>

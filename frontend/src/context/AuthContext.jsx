@@ -11,17 +11,26 @@ export const AuthProvider = ({ children }) => {
   });
 
   // ✅ Login function with role
-  const login = async (email, password, role) => {
+  const login = async (emailOrUsername, password, role) => {
     try {
       const endpoint =
         role === "admin"
           ? "http://localhost:8080/api/admin/login"
-          : "http://localhost:8080/api/user/login";
+          : "http://localhost:8080/api/auth/login";
 
-      const res = await axios.post(endpoint, { email, password });
+      // ⚠️ Admin ke liye {username, password}, User ke liye {email, password}
+      const payload =
+        role === "admin"
+          ? { username: emailOrUsername, password }
+          : { email: emailOrUsername, password };
+
+      const res = await axios.post(endpoint, payload);
 
       if (res.data.success) {
-        const loggedInUser = { ...res.data.user, role }; // role add kiya
+        const loggedInUser =
+          role === "admin"
+            ? { ...res.data.admin, role }
+            : { ...res.data.user, role };
 
         // Save in state + localStorage
         setUser(loggedInUser);
@@ -39,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   // ✅ Signup function (only for users)
   const signup = async (name, email, password) => {
     try {
-      const res = await axios.post("http://localhost:8080/api/user/signup", {
+      const res = await axios.post("http://localhost:8080/api/auth/signup", {
         name,
         email,
         password,
