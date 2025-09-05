@@ -33,7 +33,7 @@ export default function Navbar() {
               <span className="text-blue-800 font-bold text-lg">V</span>
             </div>
             <span className="text-xl font-bold">
-              <span className="text-white">Viraam
+              <span className="text-white">andu
 </span>
               <span className="text-blue-300">Vani</span>
             </span>
