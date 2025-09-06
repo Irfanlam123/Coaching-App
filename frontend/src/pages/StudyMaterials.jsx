@@ -30,12 +30,12 @@ const StudyMaterials = () => {
     : materials.filter(material => material.class === selectedClass);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#043D3B]/5 to-[#043D3B]/10 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl mb-4">
-            Study <span className="text-indigo-600">Materials</span>
+            Study <span className="text-[#043D3B]">Materials</span>
           </h1>
           <p className="max-w-2xl mx-auto text-xl text-gray-600">
             Access comprehensive study resources for all classes and subjects
@@ -46,8 +46,8 @@ const StudyMaterials = () => {
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
-              <div className="p-3 bg-indigo-100 rounded-full mr-4">
-                <FaFilter className="text-xl text-indigo-600" />
+              <div className="p-3 bg-[#043D3B]/10 rounded-full mr-4">
+                <FaFilter className="text-xl text-[#043D3B]" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900">Filter Materials</h2>
             </div>
@@ -57,7 +57,7 @@ const StudyMaterials = () => {
                 <select 
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
-                  className="pl-10 pr-4 py-3 w-full md:w-64 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
+                  className="pl-10 pr-4 py-3 w-full md:w-64 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B] appearance-none"
                 >
                   {classes.map((classOption, index) => (
                     <option key={index} value={classOption}>{classOption}</option>
@@ -90,11 +90,11 @@ const StudyMaterials = () => {
               >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="inline-flex items-center px-3 py-1 bg-indigo-100 text-indigo-800 text-sm font-medium rounded-full">
+                    <span className="inline-flex items-center px-3 py-1 bg-[#043D3B]/10 text-[#043D3B] text-sm font-medium rounded-full">
                       {material.class}
                     </span>
-                    <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                      <FaBook className="text-blue-600" />
+                    <div className="w-10 h-10 rounded-lg bg-[#043D3B]/10 flex items-center justify-center">
+                      <FaBook className="text-[#043D3B]" />
                     </div>
                   </div>
                   
@@ -107,7 +107,7 @@ const StudyMaterials = () => {
                   
                   <a 
                     href={material.pdfUrl} 
-                    className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300"
+                    className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#043D3B] hover:bg-[#032E2C] transition-colors duration-300"
                   >
                     <FaDownload className="mr-2" />
                     Download PDF
@@ -118,8 +118,8 @@ const StudyMaterials = () => {
           </div>
         ) : (
           <div className="text-center py-12 bg-white rounded-xl shadow-md">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-indigo-100 flex items-center justify-center">
-              <FaBook className="text-4xl text-indigo-600" />
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#043D3B]/10 flex items-center justify-center">
+              <FaBook className="text-4xl text-[#043D3B]" />
             </div>
             <h3 className="text-xl font-medium text-gray-900 mb-2">No study materials found</h3>
             <p className="text-gray-600 max-w-md mx-auto">
@@ -129,29 +129,29 @@ const StudyMaterials = () => {
         )}
 
         {/* Additional Info Section */}
-        <div className="mt-16 bg-indigo-600 rounded-2xl shadow-xl p-8 md:p-12 text-white">
+        <div className="mt-16 bg-[#043D3B] rounded-2xl shadow-xl p-8 md:p-12 text-white">
           <h2 className="text-3xl font-bold text-center mb-8">How to Use Study Materials Effectively</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#032E2C] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-xl font-bold">1</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Download</h3>
-              <p className="text-indigo-100">Download the PDF materials for your class and subject</p>
+              <p className="text-[#CFE8E7]">Download the PDF materials for your class and subject</p>
             </div>
             <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#032E2C] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-xl font-bold">2</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Study</h3>
-              <p className="text-indigo-100">Follow the structured chapters and practice regularly</p>
+              <p className="text-[#CFE8E7]">Follow the structured chapters and practice regularly</p>
             </div>
             <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#032E2C] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-xl font-bold">3</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Excel</h3>
-              <p className="text-indigo-100">Track your progress and improve your performance</p>
+              <p className="text-[#CFE8E7]">Track your progress and improve your performance</p>
             </div>
           </div>
         </div>
