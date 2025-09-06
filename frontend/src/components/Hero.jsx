@@ -70,7 +70,7 @@ const Hero = () => {
           {/* Stats Section with improved cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center">
+              <div className="text-4xl font-bold text-[#043D3B] mb-2 flex items-center justify-center">
                 95%
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -81,13 +81,13 @@ const Hero = () => {
             </div>
             
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2">10K+</div>
+              <div className="text-4xl font-bold text-[#043D3B] mb-2">10K+</div>
               <div className="text-lg font-medium text-gray-700">Students</div>
               <p className="text-sm text-gray-500 mt-2">trust us for their preparation journey</p>
             </div>
             
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-4xl font-bold text-[#043D3B] mb-2">15+</div>
               <div className="text-lg font-medium text-gray-700">Years Experience</div>
               <p className="text-sm text-gray-500 mt-2">in mentoring future professionals</p>
             </div>
