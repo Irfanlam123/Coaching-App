@@ -1,65 +1,57 @@
-// src/components/AdminSidebarDashboard.jsx
-import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { Upload, BarChart3, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import { LogOut, BookOpen, BarChart3, Upload } from "lucide-react";
 
-const AdminSidebarDashboard = () => {
+export default function AdminSidebar() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { logout } = useAuth();
+
+  const menuItems = [
+    { path: "/admin/upload-materials", name: "Upload Materials", icon: Upload },
+    { path: "/admin/add-results", name: "Add Results", icon: BarChart3 },
+  ];
 
   const handleLogout = () => {
     logout();
-    navigate("/");
   };
 
-  const links = [
-    { 
-      path: "/admin/upload-materials", 
-      name: "Upload Materials", 
-      icon: <Upload className="w-5 h-5" />
-    },
-    { 
-      path: "/admin/add-results", 
-      name: "Add Results", 
-      icon: <BarChart3 className="w-5 h-5" />
-    },
-  ];
-
   return (
-    <div className="w-64 bg-[#043D3B] text-white min-h-screen p-6 flex flex-col">
-      <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
-        <BookOpen className="w-6 h-6" />
-        Admin Panel
-      </h2>
+    <div className="w-64 bg-[#043D3B] text-white h-full flex flex-col">
+      <div className="p-4 border-b border-[#0A5C59]">
+        <h1 className="text-xl font-bold">Admin Panel</h1>
+      </div>
       
-      <nav className="flex flex-col space-y-2 flex-1">
-        {links.map((link) => (
-          <Link
-            key={link.path}
-            to={link.path}
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-              location.pathname === link.path
-                ? "bg-white text-[#043D3B] font-semibold"
-                : "hover:bg-[#065755]"
-            }`}
-          >
-            {link.icon}
-            {link.name}
-          </Link>
-        ))}
+      <nav className="flex-1 p-4">
+        <div className="space-y-2">
+          {menuItems.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-colors ${
+                  location.pathname === item.path
+                    ? "bg-[#0A5C59] text-white"
+                    : "text-gray-300 hover:bg-[#0A5C59] hover:text-white"
+                }`}
+              >
+                <IconComponent className="w-5 h-5" />
+                <span>{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
       </nav>
       
-      <button
-        onClick={handleLogout}
-        className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#065755] transition mt-auto"
-      >
-        <LogOut className="w-5 h-5" />
-        Logout
-      </button>
+      <div className="p-4 border-t border-[#0A5C59]">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center space-x-2 p-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+        >
+          <LogOut className="w-5 h-5" />
+          <span>Logout</span>
+        </button>
+      </div>
     </div>
   );
-};
-
-export default AdminSidebarDashboard;
+}

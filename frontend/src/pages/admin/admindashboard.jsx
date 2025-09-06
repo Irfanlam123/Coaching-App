@@ -1,21 +1,29 @@
-// src/pages/admin/AdminDashboard.jsx
-import React from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import AdminSidebar from "../../components/adminSidebarDahsboard";
 import { Outlet } from "react-router-dom";
-import AdminSidebarDashboard from "../../components/adminSidebarDahsboard";
-const AdminDashboard = () => {
-  return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <AdminSidebarDashboard />
 
-      {/* Main content */}
-      <div className="flex-1 p-6 overflow-auto">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <Outlet /> {/* nested routes will render here */}
-        </div>
+export default function AdminDashboard() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user || user.role !== "admin") {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
+  if (!user || user.role !== "admin") {
+    return null; // or a loading spinner
+  }
+
+  return (
+    <div className="flex h-screen bg-gray-100">
+      <AdminSidebar />
+      <div className="flex-1 p-6">
+        <Outlet />
       </div>
     </div>
   );
-};
-
-export default AdminDashboard;
+}

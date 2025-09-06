@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Signup() {
-  const { signup } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,26 +14,36 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    
-    // Basic validation
+
+    // ✅ Basic validation
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-    
+
     if (password.length < 6) {
       setError("Password must be at least 6 characters");
       return;
     }
-    
-    setIsLoading(true);
-    const success = await signup(name, email, password);
-    setIsLoading(false);
-    
-    if (success) {
-      navigate("/login");
-    } else {
-      setError("Signup failed. Please try again.");
+
+    try {
+      setIsLoading(true);
+
+      // ✅ Backend API call
+      const res = await axios.post("http://localhost:8080/api/student/signup", {
+        name,
+        email,
+        password,
+      });
+
+      console.log("Signup success:", res.data);
+
+      setIsLoading(false);
+      navigate("/login"); // redirect to login page after signup
+    } catch (err) {
+      console.error("Signup error:", err.response?.data || err.message);
+      setError(err.response?.data?.msg || "Signup failed. Please try again.");
+      setIsLoading(false);
     }
   };
 
@@ -54,7 +63,11 @@ export default function Signup() {
           {error && (
             <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-5 text-sm flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clipRule="evenodd"
+                />
               </svg>
               {error}
             </div>
@@ -62,9 +75,7 @@ export default function Signup() {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-5">
-              <label className="block text-gray-700 mb-2 font-medium">
-                Full Name
-              </label>
+              <label className="block text-gray-700 mb-2 font-medium">Full Name</label>
               <input
                 type="text"
                 placeholder="Enter your full name"
@@ -76,9 +87,7 @@ export default function Signup() {
             </div>
 
             <div className="mb-5">
-              <label className="block text-gray-700 mb-2 font-medium">
-                Email Address
-              </label>
+              <label className="block text-gray-700 mb-2 font-medium">Email Address</label>
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -90,9 +99,7 @@ export default function Signup() {
             </div>
 
             <div className="mb-5">
-              <label className="block text-gray-700 mb-2 font-medium">
-                Password
-              </label>
+              <label className="block text-gray-700 mb-2 font-medium">Password</label>
               <input
                 type="password"
                 placeholder="Create a password (min. 6 characters)"
@@ -104,9 +111,7 @@ export default function Signup() {
             </div>
 
             <div className="mb-6">
-              <label className="block text-gray-700 mb-2 font-medium">
-                Confirm Password
-              </label>
+              <label className="block text-gray-700 mb-2 font-medium">Confirm Password</label>
               <input
                 type="password"
                 placeholder="Confirm your password"
@@ -124,9 +129,18 @@ export default function Signup() {
             >
               {isLoading ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   Creating Account...
                 </>
@@ -139,7 +153,7 @@ export default function Signup() {
           <div className="mt-6 text-center">
             <p className="text-gray-600 text-sm">
               Already have an account?{" "}
-              <button 
+              <button
                 onClick={() => navigate("/login")}
                 className="text-[#043D3B] font-semibold hover:underline"
               >
@@ -147,8 +161,6 @@ export default function Signup() {
               </button>
             </p>
           </div>
-
-        
         </div>
       </div>
     </div>
