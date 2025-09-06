@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -8,8 +9,8 @@ const bcrypt = require("bcryptjs");
 const Admin = require("./models/Admin");
 
 // Routes import
-const authRoutes = require("./routes/authRoutes");
-const adminRoutes = require("./routes/adminRoutes");
+const authRoutes = require("./routes/authRoutes");   // User Signup/Login
+const adminRoutes = require("./routes/adminRoutes"); // Admin Login
 
 dotenv.config();
 connectDB();
@@ -21,15 +22,15 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/auth", authRoutes);   // User Signup/Login
-app.use("/api/admin", adminRoutes); // Admin Login
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Test route
 app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
 
-// ✅ Function to auto-create default admin
+// ✅ Default admin create function
 const createDefaultAdmin = async () => {
   try {
     const existingAdmin = await Admin.findOne({ username: "admin123" });
@@ -39,7 +40,9 @@ const createDefaultAdmin = async () => {
         username: "admin123",
         password: hashedPassword,
       });
-      console.log("✅ Default admin created: username=admin123, password=adminpass");
+      console.log(
+        "✅ Default admin created: username=admin123, password=adminpass"
+      );
     } else {
       console.log("ℹ️ Default admin already exists");
     }
@@ -52,5 +55,5 @@ const createDefaultAdmin = async () => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  await createDefaultAdmin(); // Call auto-create admin on server start
+  await createDefaultAdmin();
 });

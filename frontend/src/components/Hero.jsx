@@ -31,7 +31,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Main heading with improved typography */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Master Your Future with <span className="text-blue-600 relative">
+            Master Your Future with <span className="text-[#043D3B] relative">
               Expert Coaching
               <span className="absolute -bottom-2 left-0 w-full h-1 bg-blue-400 transform scale-x-75"></span>
             </span>
@@ -40,7 +40,7 @@ const Hero = () => {
           {/* Subtitle with better readability */}
           <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
             Join thousands of successful students who achieved their dreams with our comprehensive 
-            <span className="font-semibold text-blue-600"> JEE and NEET coaching programs</span>. 
+            <span className="font-semibold text-[#043D3B]"> JEE and NEET coaching programs</span>. 
             Experience personalized learning with proven results.
           </p>
           
@@ -48,7 +48,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
             <Link 
               to="/services" 
-              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-[#043D3B] text-white font-semibold rounded-lg shadow-md hover:bg-white hover:text-[#043D3B] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -58,7 +58,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/about" 
-              className="px-8 py-4 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-white border-2 border-[#043D3B] text-[#043D3B] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />

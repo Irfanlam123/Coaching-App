@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard ,User } from "lucide-react";
+import { LayoutDashboard, User } from "lucide-react";
 
 export default function Navbar({ onDashboardToggle }) {
   const { user } = useAuth();
@@ -11,7 +11,6 @@ export default function Navbar({ onDashboardToggle }) {
     { path: "/services", name: "Services" },
     { path: "/study-materials", name: "Study Materials" },
     { path: "/about", name: "About" },
-  
   ];
 
   return (
@@ -42,7 +41,7 @@ export default function Navbar({ onDashboardToggle }) {
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 relative group ${
                   location.pathname === item.path
                     ? "text-white bg-[#0e6a67]"
-                    : "text-blue-100 hover:text-white hover:bg-[#106865]"
+                    : "text-blue-100 hover:text-[#0e6a67] hover:bg-white"
                 }`}
               >
                 {item.name}
@@ -50,12 +49,13 @@ export default function Navbar({ onDashboardToggle }) {
             ))}
           </div>
 
+         
           {/* ✅ Dashboard Icon (Right side) */}
           <div className="hidden md:flex items-center space-x-3">
             {user && (
               <button
                 onClick={onDashboardToggle}
-                className={`p-2 rounded-full transition-colors ${
+                className={`p-2 rounded-full bg-white text-[#0e6a67] transition-colors ${
                   location.pathname.startsWith("/dashboard")
                     ? "bg-[#0e6a67] text-white"
                     : "text-blue-100 hover:bg-[#106865] hover:text-white"

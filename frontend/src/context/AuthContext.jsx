@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }) => {
       return { success: false };
     }
   };
+ 
 
   // ✅ Signup function (only for users)
   const signup = async (name, email, password) => {
