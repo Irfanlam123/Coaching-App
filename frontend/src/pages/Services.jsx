@@ -22,11 +22,9 @@ const Services = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
     console.log('Form submitted:', { class: selectedClass, ...formData });
     setSubmitted(true);
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setSubmitted(false);
       setSelectedClass('');
@@ -40,7 +38,6 @@ const Services = () => {
     }, 3000);
   };
 
-  // Class cards data
   const classCards = [
     {
       id: 1,
@@ -69,12 +66,12 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#043D3B]/10 to-[#043D3B]/20 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            School <span className="text-indigo-600">Admissions</span>
+            School <span className="text-[#043D3B]">Admissions</span>
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-xl text-gray-600">
             Begin your educational journey with us. Secure your child's future today.
@@ -104,7 +101,7 @@ const Services = () => {
                     id="class"
                     value={selectedClass}
                     onChange={(e) => setSelectedClass(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                     required
                   >
                     <option value="">Select a class</option>
@@ -128,7 +125,7 @@ const Services = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                       placeholder="Enter student's full name"
                       required
                     />
@@ -149,7 +146,7 @@ const Services = () => {
                       name="parentName"
                       value={formData.parentName}
                       onChange={handleInputChange}
-                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                       placeholder="Enter parent's full name"
                       required
                     />
@@ -170,7 +167,7 @@ const Services = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                       placeholder="Enter your email address"
                       required
                     />
@@ -191,7 +188,7 @@ const Services = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                       placeholder="Enter your phone number"
                       required
                     />
@@ -208,14 +205,14 @@ const Services = () => {
                     name="previousSchool"
                     value={formData.previousSchool}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
                     placeholder="Enter previous school name"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center"
+                  className="w-full bg-[#043D3B] text-white py-3 px-4 rounded-lg hover:bg-[#032d2b] transition-colors duration-300 flex items-center justify-center"
                 >
                   Submit Application
                   <FaArrowRight className="ml-2" />
@@ -233,14 +230,14 @@ const Services = () => {
                   key={card.id} 
                   className="bg-white rounded-xl shadow-lg p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
                 >
-                  <h3 className="text-xl font-semibold text-indigo-700 mb-3">{card.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#043D3B] mb-3">{card.title}</h3>
                   <p className="text-gray-600 mb-4">{card.description}</p>
                   <ul className="space-y-2">
                     {card.features.map((feature, index) => (
                       <li key={index} className="flex items-start">
                         <div className="flex-shrink-0">
-                          <div className="w-5 h-5 bg-indigo-100 rounded-full flex items-center justify-center mr-2 mt-0.5">
-                            <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full"></div>
+                          <div className="w-5 h-5 bg-[#043D3B]/10 rounded-full flex items-center justify-center mr-2 mt-0.5">
+                            <div className="w-1.5 h-1.5 bg-[#043D3B] rounded-full"></div>
                           </div>
                         </div>
                         <span className="text-gray-700">{feature}</span>
@@ -254,37 +251,23 @@ const Services = () => {
         </div>
 
         {/* Additional Information Section */}
-        <div className="mt-16 bg-indigo-600 rounded-2xl shadow-xl p-8 md:p-12 text-white">
+        <div className="mt-16 bg-[#043D3B] rounded-2xl shadow-xl p-8 md:p-12 text-white">
           <h2 className="text-3xl font-bold text-center mb-8">Admission Process</h2>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold">1</span>
+            {['Application','Assessment','Interaction','Confirmation'].map((step, i) => (
+              <div key={i} className="text-center">
+                <div className="bg-[#032d2b] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-xl font-bold">{i+1}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{step}</h3>
+                <p className="text-gray-200">
+                  {i === 0 && 'Fill out the admission form with required details'}
+                  {i === 1 && 'Student assessment (if applicable for the class)'}
+                  {i === 2 && 'Meeting with school authorities and parents'}
+                  {i === 3 && 'Receive admission confirmation and complete enrollment'}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Application</h3>
-              <p className="text-indigo-100">Fill out the admission form with required details</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold">2</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Assessment</h3>
-              <p className="text-indigo-100">Student assessment (if applicable for the class)</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold">3</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Interaction</h3>
-              <p className="text-indigo-100">Meeting with school authorities and parents</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-indigo-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-xl font-bold">4</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Confirmation</h3>
-              <p className="text-indigo-100">Receive admission confirmation and complete enrollment</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
