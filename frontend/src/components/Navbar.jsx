@@ -33,7 +33,7 @@ export default function Navbar({ onDashboardToggle }) {
             </div>
             <span className="text-xl font-bold tracking-tight">
               <span className="text-white">Viraam</span>
-              <span className="text-blue-300">Vani</span>
+              <span className="text-orange-500">Vaani</span>
             </span>
           </Link>
 

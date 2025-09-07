@@ -21,7 +21,7 @@ const Hero = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Master Your Future with <span className="text-[#043D3B] relative">
               Expert Coaching
-              <span className="absolute -bottom-2 left-0 w-full h-1 bg-blue-400 transform scale-x-75"></span>
+              <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#05665F] transform scale-x-75"></span>
             </span>
           </h1>
           
@@ -36,7 +36,10 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
             <Link 
               to="/services" 
-              className="px-8 py-4 bg-[#043D3B] text-white font-semibold rounded-lg shadow-md hover:bg-white hover:text-[#043D3B] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+
+              className="px-8 py-4 bg-[#043D3B] text-white font-semibold rounded-lg shadow-md hover:bg-[#05665F] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+
+              className="px-8 py-4 bg-[#043D3B] text-white font-semibold rounded-lg shadow-md hover:bg-white hover:text-[#043D3B] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"main
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -46,8 +49,11 @@ const Hero = () => {
             </Link>
             <Link 
               to="/about" 
+
+              className="px-8 py-4 bg-white border-2 border-[#043D3B] text-[#043D3B] font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2"
+
               className="px-8 py-4 bg-white border-2 border-[#043D3B] text-[#043D3B] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2"
-            >
+            
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
@@ -57,6 +63,8 @@ const Hero = () => {
           
           {/* Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
+
             <div className="bg-white rounded-xl p-6 border border-gray-200 transition-transform transform hover:-translate-y-1 hover:shadow-xl">
               <div className="text-4xl font-bold text-[#043D3B] mb-2 flex items-center justify-center">
                 95%
@@ -68,12 +76,16 @@ const Hero = () => {
               <p className="text-sm text-gray-500 mt-2">of our students achieve their target ranks</p>
             </div>
             
+
+            <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
+
             <div className="bg-white rounded-xl p-6 border border-gray-200 transition-transform transform hover:-translate-y-1 hover:shadow-xl">
               <div className="text-4xl font-bold text-[#043D3B] mb-2">10K+</div>
               <div className="text-lg font-medium text-gray-700">Students</div>
               <p className="text-sm text-gray-500 mt-2">trust us for their preparation journey</p>
             </div>
             
+            <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
             <div className="bg-white rounded-xl p-6 border border-gray-200 transition-transform transform hover:-translate-y-1 hover:shadow-xl">
               <div className="text-4xl font-bold text-[#043D3B] mb-2">15+</div>
               <div className="text-lg font-medium text-gray-700">Years Experience</div>
@@ -84,8 +96,8 @@ const Hero = () => {
       </div>
       
       {/* Decorative elements */}
-      <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-blue-100 opacity-50"></div>
-      <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-blue-100 opacity-50"></div>
+      <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-[#CFE8E6] opacity-60"></div>
+      <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[#CFE8E6] opacity-60"></div>
     </section>
   );
 };

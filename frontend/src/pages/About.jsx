@@ -10,6 +10,7 @@ import {
   FaAward,
   FaProjectDiagram
 } from 'react-icons/fa';
+import Contact from './Contact';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,28 +19,7 @@ const About = () => {
     setIsVisible(true);
   }, []);
 
-  const teamMembers = [
-    {
-
-      name: "MD Adil",
-      role: "Founder & CEO |Viraam Vaani|",
-      image: "./src/assets/ceo.jpg",
-      social: { linkedin: "#", twitter: "#", github: "#" }
-    },
-    {
-      name: "Jaismin Ara",
-      role: "Team Leader ",
-      image: "",
-      social: { linkedin: "#", twitter: "#", github: "#" }
-    },
-    {
-      name: "Amjad Ansari",
-      role: "Developer",
-      image: "./src/assets/amja.jpg",
-      social: { linkedin: "#", twitter: "#", github: "#" }
-    }
-  ];
-
+  
   const stats = [
     { icon: <FaAward className="text-2xl text-red-500" />, number: "150+", label: "Projects Completed" },
     { icon: <FaUser className="text-2xl text-orange-400" />, number: "100+", label: "Happy Students" },
@@ -128,48 +108,7 @@ const About = () => {
           ))}
         </div>
 
-        {/* Team Section */}
-{/* Team Section */}
-<div className="mb-20">
-  <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-    Our <span className="text-[#043D3B]">Team</span>
-  </h2>
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {teamMembers.map((member, index) => (
-      <div 
-        key={index} 
-        className="bg-white rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center p-6"
-      >
-        {/* Circular Image */}
-        <div className="w-40 h-40 mb-4">
-          <img 
-            src={member.image} 
-            alt={member.name} 
-            className="w-full h-full object-cover rounded-full shadow-md"
-          />
-        </div>
-
-        {/* Text */}
-        <div className="text-center">
-          <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
-          <p className="text-[#043D3B] mb-3 text-sm">{member.role}</p>
-          <div className="flex justify-center space-x-4">
-            <a href={member.social.linkedin} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
-              <FaLinkedin className="text-lg" />
-            </a>
-            <a href={member.social.twitter} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
-              <FaTwitter className="text-lg" />
-            </a>
-            <a href={member.social.github} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
-              <FaGithub className="text-lg" />
-            </a>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
+    
 
 
         {/* Values Section */}
@@ -201,9 +140,13 @@ const About = () => {
             </div>
           </div>
         </div>
+        <Contact/>
       </div>
     </div>
+    
   );
 };
+
+
 
 export default About;
