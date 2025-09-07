@@ -5,24 +5,21 @@ import { Eye, EyeOff, User, Mail, Lock } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function Login() {
-  const [email, setEmail] = useState("");     // for user login
-  const [username, setUsername] = useState(""); // for admin login
+  const [email, setEmail] = useState("");     
+  const [username, setUsername] = useState(""); 
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // default user
+  const [role, setRole] = useState("user"); 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { user, login } = useAuth();
 
-  // ✅ If already logged in, redirect
+  // ✅ Redirect if already logged in
   useEffect(() => {
     if (user) {
-      if (user.role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/dashboard");
-      }
+      if (user.role === "admin") navigate("/admin");
+      else navigate("/dashboard");
     }
   }, [user, navigate]);
 
@@ -36,12 +33,15 @@ export default function Login() {
       const result = await login(identifier, password, role);
 
       if (result.success) {
-        if (role === "admin") {
-          toast.success("Admin logged in successfully ✅", { position: "top-right" });
-          navigate("/admin", { replace: true });
-        } else {
+        if (role === "user") {
+          // ✅ Store user email in localStorage for results fetch
+          localStorage.setItem("userEmail", email);
+
           toast.success("User logged in successfully ✅", { position: "top-right" });
           navigate("/dashboard", { replace: true });
+        } else {
+          toast.success("Admin logged in successfully ✅", { position: "top-right" });
+          navigate("/admin", { replace: true });
         }
       } else {
         setError(result.message || "Login failed");

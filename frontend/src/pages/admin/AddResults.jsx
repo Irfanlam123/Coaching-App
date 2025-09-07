@@ -3,12 +3,10 @@ import axios from "axios";
 
 export default function AddResults() {
   const [formData, setFormData] = useState({
-    studentName: "",
-    email: "",
+    studentEmail: "",
     className: "",
     score: "",
-    percentage: "",
-    gpa: "",
+    totalMarks: "",
   });
 
   const handleChange = (e) => {
@@ -19,10 +17,10 @@ export default function AddResults() {
     e.preventDefault();
 
     try {
-      // POST request to backend
+      // Backend expects "results" as an array
       const res = await axios.post(
-        "http://localhost:8080/api/results/add",
-        formData
+        "http://localhost:8080/api/admin/results/add",
+        { results: [formData] }
       );
 
       alert("✅ Result added successfully!");
@@ -30,12 +28,10 @@ export default function AddResults() {
 
       // Reset form
       setFormData({
-        studentName: "",
-        email: "",
+        studentEmail: "",
         className: "",
         score: "",
-        percentage: "",
-        gpa: "",
+        totalMarks: "",
       });
     } catch (err) {
       console.error("Error adding result:", err.response?.data || err.message);
@@ -52,24 +48,13 @@ export default function AddResults() {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg p-6 space-y-4"
       >
-        {/* Student Name */}
-        <input
-          type="text"
-          name="studentName"
-          value={formData.studentName}
-          onChange={handleChange}
-          placeholder="Enter Student Name"
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
-          required
-        />
-
         {/* Email */}
         <input
           type="email"
-          name="email"
-          value={formData.email}
+          name="studentEmail"
+          value={formData.studentEmail}
           onChange={handleChange}
-          placeholder="Enter Email"
+          placeholder="Enter Student Email"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
         />
@@ -80,7 +65,7 @@ export default function AddResults() {
           name="className"
           value={formData.className}
           onChange={handleChange}
-          placeholder="Enter Class (e.g., MCA)"
+          placeholder="Enter Class (e.g., 10th)"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
         />
@@ -96,26 +81,13 @@ export default function AddResults() {
           required
         />
 
-        {/* Percentage */}
+        {/* Total Marks */}
         <input
           type="number"
-          step="0.01"
-          name="percentage"
-          value={formData.percentage}
+          name="totalMarks"
+          value={formData.totalMarks}
           onChange={handleChange}
-          placeholder="Enter Percentage"
-          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
-          required
-        />
-
-        {/* GPA */}
-        <input
-          type="number"
-          step="0.01"
-          name="gpa"
-          value={formData.gpa}
-          onChange={handleChange}
-          placeholder="Enter GPA"
+          placeholder="Enter Total Marks"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
         />
