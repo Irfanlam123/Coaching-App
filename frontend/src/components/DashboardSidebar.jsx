@@ -20,8 +20,8 @@ export default function DashboardSidebar({ isOpen, onClose }) {
 
   const menuItems = [
     { path: "/dashboard/results", name: "Results", icon: BarChart3 },
-    { path: "/dashboard/my-materials", name: "My Materials", icon: BookOpen },
-    { path: "/dashboard/profile", name: "Profile", icon: User },
+    // { path: "/dashboard/my-materials", name: "My Materials", icon: BookOpen },
+    // { path: "/dashboard/profile", name: "Profile", icon: User },
   ];
 
   return (

@@ -2,11 +2,11 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import DashboardSidebar from "./components/DashboardSidebar";
-import { useState } from "react";
+import react from "react";
 import { Toaster } from "react-hot-toast";
 
 export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = react.useState(false);
 
   return (
     <div className="relative min-h-screen flex flex-col">
