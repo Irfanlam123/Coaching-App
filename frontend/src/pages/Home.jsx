@@ -2,18 +2,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
+import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+
+const teamMembers = [
+  {
+    name: "MD Adil",
+    role: "Founder & CEO |Viraam Vaani|",
+    image: "./src/assets/ceo.jpg",
+    social: { linkedin: "#", twitter: "#", github: "#" }
+  },
+  {
+    name: "Jaismin Ara",
+    role: "Sponsor Team",
+    image: "",
+    social: { linkedin: "#", twitter: "#", github: "#" }
+  },
+  {
+    name: "Amjad Ansari",
+    role: "Developer",
+    image: "./src/assets/amja.jpg",
+    social: { linkedin: "#", twitter: "#", github: "#" }
+  }
+];
 
 const Home = () => {
   return (
     <div className="overflow-hidden">
       <Hero />
-      
+
       {/* Features Section */}
       <section className="py-20 bg-white relative">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-[#043D3B] opacity-10"></div>
         <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-[#043D3B] opacity-10"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#043D3B] font-semibold text-lg mb-2 block">Our Advantages</span>
@@ -23,7 +45,7 @@ const Home = () => {
               We provide the perfect environment for academic excellence with our proven teaching methodology
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-2">
               <div className="w-16 h-16 bg-[#043D3B] bg-opacity-10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-opacity-20 transition-colors duration-300">
@@ -42,7 +64,7 @@ const Home = () => {
                 </span>
               </div>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-2">
               <div className="w-16 h-16 bg-[#043D3B] bg-opacity-10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-opacity-20 transition-colors duration-300">
                 <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +82,7 @@ const Home = () => {
                 </span>
               </div>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-2">
               <div className="w-16 h-16 bg-[#043D3B] bg-opacity-10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-opacity-20 transition-colors duration-300">
                 <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +103,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Stats Section */}
       <section className="py-16 bg-[#043D3B] bg-opacity-5 relative">
         <div className="container mx-auto px-4 relative z-10">
@@ -105,11 +127,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="py-20 bg-white relative">
         <div className="absolute top-0 left-0 w-full h-1/2 bg-[#043D3B] bg-opacity-5"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="bg-white rounded-2xl shadow-xl p-10 md:p-16 max-w-5xl mx-auto border border-gray-100">
             <div className="text-center">
@@ -118,10 +140,10 @@ const Home = () => {
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg">
                 Join hundreds of successful students who have achieved their academic goals with our personalized guidance and proven teaching methodology.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
-                <Link 
-                  to="/services" 
+                <Link
+                  to="/services"
                   className="px-8 py-4 bg-[#043D3B] text-white font-medium rounded-lg hover:bg-[#032E2C] transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,8 +151,8 @@ const Home = () => {
                   </svg>
                   Apply for Admission
                 </Link>
-                <Link 
-                  to="/study-materials" 
+                <Link
+                  to="/study-materials"
                   className="px-8 py-4 bg-white text-gray-900 border border-gray-200 font-medium rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,15 +161,60 @@ const Home = () => {
                   View Study Materials
                 </Link>
               </div>
-              
+
               <p className="text-sm text-gray-500 mt-8">
                 Limited seats available for the 2023-24 academic session
               </p>
             </div>
           </div>
         </div>
+
+        
+
       </section>
+      {/* team section */}
+      <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Our <span className="text-[#043D3B]">Team</span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center p-6"
+              >
+                {/* Circular Image */}
+                <div className="w-40 h-40 mb-4">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover rounded-full shadow-md"
+                  />
+                </div>
+
+                {/* Text */}
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
+                  <p className="text-[#043D3B] mb-3 text-sm">{member.role}</p>
+                  <div className="flex justify-center space-x-4">
+                    <a href={member.social.linkedin} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
+                      <FaLinkedin className="text-lg" />
+                    </a>
+                    <a href={member.social.twitter} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
+                      <FaTwitter className="text-lg" />
+                    </a>
+                    <a href={member.social.github} className="text-gray-600 hover:text-[#043D3B] transition-colors duration-300">
+                      <FaGithub className="text-lg" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
     </div>
+
   );
 };
 

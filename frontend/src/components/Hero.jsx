@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="relative bg-slate-50 text-gray-900 py-16 md:py-24 overflow-hidden">
-      {/* Background pattern with subtle animation */}
+      {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
           className="absolute top-0 left-0 w-full h-full bg-repeat"
@@ -29,26 +29,26 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Main heading with improved typography */}
+          {/* Main heading */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Master Your Future with <span className="text-blue-600 relative">
+            Master Your Future with <span className="text-[#043D3B] relative">
               Expert Coaching
-              <span className="absolute -bottom-2 left-0 w-full h-1 bg-blue-400 transform scale-x-75"></span>
+              <span className="absolute -bottom-2 left-0 w-full h-1 bg-[#05665F] transform scale-x-75"></span>
             </span>
           </h1>
           
-          {/* Subtitle with better readability */}
+          {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
             Join thousands of successful students who achieved their dreams with our comprehensive 
-            <span className="font-semibold text-blue-600"> JEE and NEET coaching programs</span>. 
+            <span className="font-semibold text-[#043D3B]"> JEE and NEET coaching programs</span>. 
             Experience personalized learning with proven results.
           </p>
           
-          {/* CTA buttons with improved styling */}
+          {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
             <Link 
               to="/services" 
-              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-[#043D3B] text-white font-semibold rounded-lg shadow-md hover:bg-[#05665F] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -58,7 +58,7 @@ const Hero = () => {
             </Link>
             <Link 
               to="/about" 
-              className="px-8 py-4 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-white border-2 border-[#043D3B] text-[#043D3B] font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -67,10 +67,10 @@ const Hero = () => {
             </Link>
           </div>
           
-          {/* Stats Section with improved cards */}
+          {/* Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2 flex items-center justify-center">
+              <div className="text-4xl font-bold text-[#043D3B] mb-2 flex items-center justify-center">
                 95%
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -81,13 +81,13 @@ const Hero = () => {
             </div>
             
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2">10K+</div>
+              <div className="text-4xl font-bold text-[#043D3B] mb-2">10K+</div>
               <div className="text-lg font-medium text-gray-700">Students</div>
               <p className="text-sm text-gray-500 mt-2">trust us for their preparation journey</p>
             </div>
             
             <div className="bg-white rounded-xl p-6 border border-gray-200 stat-card transition-all duration-300 shadow-sm hover:shadow-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-4xl font-bold text-[#043D3B] mb-2">15+</div>
               <div className="text-lg font-medium text-gray-700">Years Experience</div>
               <p className="text-sm text-gray-500 mt-2">in mentoring future professionals</p>
             </div>
@@ -96,8 +96,8 @@ const Hero = () => {
       </div>
       
       {/* Decorative elements */}
-      <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-blue-100 opacity-50"></div>
-      <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-blue-100 opacity-50"></div>
+      <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-[#CFE8E6] opacity-60"></div>
+      <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-[#CFE8E6] opacity-60"></div>
     </section>
   );
 };
