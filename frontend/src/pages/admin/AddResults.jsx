@@ -1,63 +1,93 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function AddResults() {
   const [formData, setFormData] = useState({
-    name: "",
-    class: "",
-    marks: "",
+    studentEmail: "",
+    className: "",
+    score: "",
+    totalMarks: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Result added successfully ✅");
-    setFormData({ name: "", class: "", marks: "" });
+
+    try {
+      // Backend expects "results" as an array
+      const res = await axios.post(
+        "http://localhost:8080/api/admin/results/add",
+        { results: [formData] }
+      );
+
+      alert("✅ Result added successfully!");
+      console.log("Response:", res.data);
+
+      // Reset form
+      setFormData({
+        studentEmail: "",
+        className: "",
+        score: "",
+        totalMarks: "",
+      });
+    } catch (err) {
+      console.error("Error adding result:", err.response?.data || err.message);
+      alert("❌ Error adding result. Check console.");
+    }
   };
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-blue-900 mb-4">Add Student Result</h2>
+      <h2 className="text-xl font-bold text-blue-900 mb-4">
+        Add Student Result
+      </h2>
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg p-6 space-y-4"
       >
-        {/* Student Name */}
+        {/* Email */}
         <input
-          type="text"
-          name="name"
-          value={formData.name}
+          type="email"
+          name="studentEmail"
+          value={formData.studentEmail}
           onChange={handleChange}
-          placeholder="Enter Student Name"
+          placeholder="Enter Student Email"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
         />
 
-        {/* Class */}
-        <select
-          name="class"
-          value={formData.class}
+        {/* Class Name */}
+        <input
+          type="text"
+          name="className"
+          value={formData.className}
           onChange={handleChange}
+          placeholder="Enter Class (e.g., 10th)"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
-        >
-          <option value="">Select Class</option>
-          {[...Array(12).keys()].map((num) => (
-            <option key={num + 1} value={num + 1}>
-              Class {num + 1}
-            </option>
-          ))}
-        </select>
+        />
 
-        {/* Marks */}
+        {/* Score */}
         <input
           type="number"
-          name="marks"
-          value={formData.marks}
+          name="score"
+          value={formData.score}
           onChange={handleChange}
-          placeholder="Enter Marks"
+          placeholder="Enter Score"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
+          required
+        />
+
+        {/* Total Marks */}
+        <input
+          type="number"
+          name="totalMarks"
+          value={formData.totalMarks}
+          onChange={handleChange}
+          placeholder="Enter Total Marks"
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900"
           required
         />

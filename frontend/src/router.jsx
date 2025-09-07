@@ -1,3 +1,4 @@
+// src/router.jsx
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
@@ -12,12 +13,18 @@ import AddResults from "./pages/admin/AddResults";
 import Contact from "./pages/Contact";
 import MyMaterials from "./pages/dashboard/MyMaterials";
 import Dashboard from "./pages/dashboard/Dashboard";
-import { useAuth } from "./context/AuthContext";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
-function PrivateRoute({ children }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
-}
+// Create wrapper components for protected routes
+const PrivateRoute = ({ children }) => {
+  // This will be handled by the Dashboard component itself
+  return children;
+};
+
+const AdminRoute = ({ children }) => {
+  // This will be handled by the AdminDashboard component itself
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -34,7 +41,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
 
-      // User Dashboard
+      // User Dashboard - protection handled in Dashboard component
       {
         path: "dashboard",
         element: (
@@ -42,27 +49,30 @@ const router = createBrowserRouter([
             <Dashboard />
           </PrivateRoute>
         ),
-      },
-      {
-        path: "dashboard/results",
-        element: (
-          <PrivateRoute>
-            <Results />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "dashboard/my-materials",
-        element: (
-          <PrivateRoute>
-            <MyMaterials />
-          </PrivateRoute>
-        ),
+        children: [
+          { index: true, element: <Navigate to="/dashboard/results" replace /> },
+          { path: "results", element: <Results /> },
+          { path: "my-materials", element: <MyMaterials /> },
+        ],
       },
 
-      // Admin routes
-      { path: "admin/upload-materials", element: <UploadMaterials /> },
-      { path: "admin/add-results", element: <AddResults /> },
+      // Admin routes - protection handled in AdminDashboard component
+      {
+        path: "admin",
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+        children: [
+          { index: true, element: <Navigate to="/admin/upload-materials" replace /> },
+          { path: "upload-materials", element: <UploadMaterials /> },
+          { path: "add-results", element: <AddResults /> },
+        ],
+      },
+
+      // Catch all route - redirect to home
+      { path: "*", element: <Navigate to="/" replace /> },
     ],
   },
 ]);

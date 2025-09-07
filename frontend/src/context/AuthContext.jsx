@@ -10,54 +10,79 @@ export const AuthProvider = ({ children }) => {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // ✅ Login function with role
-  const login = async (emailOrUsername, password, role) => {
+  // ✅ Login function
+  const login = async (identifier, password, role) => {
     try {
-      const endpoint =
-        role === "admin"
-          ? "http://localhost:8080/api/admin/login"
-          : "http://localhost:8080/api/auth/login";
+      if (role === "admin") {
+        // 🔹 Local admin login check (no API call)
+        if (identifier === "admin123" && password === "admin@123") {
+          const loggedInAdmin = {
+            name: "Admin",
+            username: "admin123",
+            role: "admin",
+            token: "dummy-admin-token",
+          };
 
-      // ⚠️ Admin ke liye {username, password}, User ke liye {email, password}
-      const payload =
-        role === "admin"
-          ? { username: emailOrUsername, password }
-          : { email: emailOrUsername, password };
+          setUser(loggedInAdmin);
+          localStorage.setItem("user", JSON.stringify(loggedInAdmin));
 
-      const res = await axios.post(endpoint, payload);
+          return { success: true, user: loggedInAdmin };
+        } else {
+          return { success: false, message: "Invalid admin credentials" };
+        }
+      } else {
+        // 🔹 Student login via API
+        const res = await axios.post("http://localhost:8080/api/student/login", {
+          email: identifier,
+          password,
+        });
 
-      if (res.data.success) {
-        const loggedInUser =
-          role === "admin"
-            ? { ...res.data.admin, role }
-            : { ...res.data.user, role };
+        if (!res.data || !res.data.token) {
+          return { success: false, message: res.data?.msg || "Login failed" };
+        }
 
-        // Save in state + localStorage
+        const loggedInUser = {
+          _id: res.data.user?._id,
+          name: res.data.user?.name,
+          email: res.data.user?.email,
+          role: "user",
+          token: res.data.token,
+        };
+
         setUser(loggedInUser);
         localStorage.setItem("user", JSON.stringify(loggedInUser));
 
-        return { success: true, role };
+        return { success: true, user: loggedInUser };
       }
-      return { success: false };
     } catch (error) {
-      console.error("Login error:", error);
-      return { success: false };
+      console.error("Login error:", error.response?.data || error.message);
+      return {
+        success: false,
+        message: error.response?.data?.msg || "Something went wrong",
+      };
     }
   };
 
-  // ✅ Signup function (only for users)
+  // ✅ Signup function (only for students)
   const signup = async (name, email, password) => {
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/signup", {
+      const res = await axios.post("http://localhost:8080/api/student/signup", {
         name,
         email,
         password,
       });
 
-      return res.data.success;
+      if (!res.data || !res.data.token) {
+        return { success: false, message: res.data?.msg || "Signup failed" };
+      }
+
+      return { success: true };
     } catch (error) {
-      console.error("Signup error:", error);
-      return false;
+      console.error("Signup error:", error.response?.data || error.message);
+      return {
+        success: false,
+        message: error.response?.data?.msg || "Something went wrong",
+      };
     }
   };
 
