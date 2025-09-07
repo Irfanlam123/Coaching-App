@@ -95,7 +95,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-2">
+            <div className="bg-white p-8  border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 group hover:-translate-y-2">
               <div className="w-16 h-16 bg-[#043D3B] bg-opacity-10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-opacity-20 transition-colors duration-300">
                 <svg
                   className="w-8 h-8 text-green-500"
@@ -186,7 +186,7 @@ const Home = () => {
 
       {/* Stats Section */}
       <section
-        className="py-16 bg-[#043D3B] bg-opacity-5 relative"
+        className="py-16 rounded-xl bg-[#043D3B] bg-opacity-5 relative"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')",
@@ -231,7 +231,7 @@ const Home = () => {
       <section className="py-20 bg-white relative overflow-hidden">
         {/* Background image from Unsplash - Education theme */}
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+          className="absolute inset-0 w-full h-full rounded-md bg-cover bg-center bg-no-repeat z-0"
           style={{
             backgroundImage:
               "url('https://images.pexels.com/photos/4103247/pexels-photo-4103247.jpeg')",

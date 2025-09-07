@@ -38,7 +38,7 @@ export default function Login() {
           localStorage.setItem("userEmail", email);
 
           toast.success("User logged in successfully ✅", { position: "top-right" });
-          navigate("/dashboard", { replace: true });
+          navigate("/", { replace: true });
         } else {
           toast.success("Admin logged in successfully ✅", { position: "top-right" });
           navigate("/admin", { replace: true });

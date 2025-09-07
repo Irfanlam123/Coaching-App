@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="relative bg-slate-50 text-gray-900 overflow-hidden">
+    <section className="relative bg-slate-50 rounded-md text-gray-900 overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
