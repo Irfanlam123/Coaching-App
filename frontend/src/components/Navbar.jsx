@@ -33,7 +33,7 @@ export default function Navbar({ onDashboardToggle }) {
             </div>
             <span className="text-xl font-bold tracking-tight">
               <span className="text-white">Viraam</span>
-              <span className="text-orange-500">Vaani</span>
+              <span className="text-blue-500">Vaani</span>
             </span>
           </Link>
 
@@ -77,16 +77,16 @@ export default function Navbar({ onDashboardToggle }) {
               <div className="flex items-center space-x-2">
                 <Link
                   to="/login"
-                  className="px-4 py-2 bg-gradient-to-r from-[#0b7471] to-[#0e6a67] hover:from-[#106865] hover:to-[#0b7471] text-white rounded-md text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                  className="px-4 py-2 bg-gradient-to-r from-[#baf5f3] to-[#0e6a67] hover:from-[#788080] hover:to-[#0b7471] text-black rounded-md text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 >
-                  Log In
+                  Resister
                 </Link>
-                <Link
+                {/* <Link
                   to="/signup"
                   className="px-4 py-2 bg-white text-[#0e6a67] hover:bg-gray-100 rounded-md text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 >
                   Sign Up
-                </Link>
+                </Link> */}
               </div>
             )}
           </div>

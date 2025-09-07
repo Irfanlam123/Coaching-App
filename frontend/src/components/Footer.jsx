@@ -1,4 +1,9 @@
-import { FaXTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa6";
+import {
+  FaXTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaFacebook,
+} from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -19,16 +24,27 @@ export default function Footer() {
 
           {/* Tagline */}
           <p className="text-sm leading-relaxed mb-6">
-            Empowering physicians with advanced multi-modal tools to improve
-            treatment selection and patient outcomes.
+            “Viraam Vaani is a center of learning and growth, dedicated to
+            nurturing minds with knowledge, values, and innovation. Our mission
+            is to inspire students with the power of education, encourage
+            critical thinking, and empower them to build a brighter future for
+            themselves and society.”
           </p>
 
           {/* Social Icons */}
           <div className="flex gap-4 text-xl mb-6">
-            <a href="#"><FaXTwitter /></a>
-            <a href="#"><FaLinkedin /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaFacebook /></a>
+            <a href="#">
+              <FaXTwitter />
+            </a>
+            <a href="#">
+              <FaLinkedin />
+            </a>
+            <a href="#">
+              <FaInstagram />
+            </a>
+            <a href="#">
+              <FaFacebook />
+            </a>
           </div>
 
           {/* Back to Top Button */}
@@ -84,7 +100,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="bg-[#0e2322] text-center text-sm py-2">
-        Copyright © {new Date().getFullYear()} Viraam Vaani. All Rights Reserved.
+        Copyright © {new Date().getFullYear()} Viraam Vaani. All Rights
+        Reserved.
       </div>
     </footer>
   );
