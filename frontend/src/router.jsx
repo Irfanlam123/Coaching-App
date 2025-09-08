@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import MyMaterials from "./pages/dashboard/MyMaterials";
 import Dashboard from "./pages/dashboard/Dashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import SuccessStories from "./pages/SuccessStories";
+import ResourcesBlog from "./pages/ResourcesBlog";
 
 // Create wrapper components for protected routes
 const PrivateRoute = ({ children }) => {
@@ -36,6 +38,8 @@ const router = createBrowserRouter([
       { path: "services", element: <Services /> },
       { path: "study-materials", element: <StudyMaterials /> },
       { path: "contact", element: <Contact /> },
+      { path: "story", element: <SuccessStories/> },
+      { path: "blog", element: <ResourcesBlog /> },
 
       // Auth
       { path: "login", element: <Login /> },

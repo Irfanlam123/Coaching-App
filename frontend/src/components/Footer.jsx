@@ -82,10 +82,10 @@ export default function Footer() {
             <Link to="/contact" className="hover:underline">
               Contact Us
             </Link>
-            <Link to="/success" className="hover:underline">
+            <Link to="/Story" className="hover:underline">
               Success Stories
             </Link>
-            <Link to="/resources" className="hover:underline">
+            <Link to="/blog" className="hover:underline">
               Resources & Blog
             </Link>
             <Link to="/privacy" className="hover:underline">
