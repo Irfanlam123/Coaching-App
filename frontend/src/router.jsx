@@ -3,7 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Services from "./pages/Services";
+import Services  from "./pages/Services";
 import StudyMaterials from "./pages/StudyMaterials";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -16,6 +16,9 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import AdminDashboard from "./pages/admin/admindashboard";
 import ResourcesBlog from "./pages/ResourcesBlog";
 import FounderStory from "./pages/SuccessStories";
+import GetInfo from "./pages/admin/getInfo";
+import AddSchedule from "./pages/admin/addShedule";
+
 
 // Create wrapper components for protected routes
 const PrivateRoute = ({ children }) => {
@@ -72,6 +75,8 @@ const router = createBrowserRouter([
           { index: true, element: <Navigate to="/admin/upload-materials" replace /> },
           { path: "upload-materials", element: <UploadMaterials /> },
           { path: "add-results", element: <AddResults /> },
+           { path: "get-info", element: <GetInfo/> },
+            { path: "add-schedule", element: <AddSchedule/> },
         ],
       },
 

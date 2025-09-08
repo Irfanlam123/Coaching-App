@@ -9,6 +9,8 @@ export default function AdminSidebar() {
   const menuItems = [
     { path: "/admin/upload-materials", name: "Upload Materials", icon: Upload },
     { path: "/admin/add-results", name: "Add Results", icon: BarChart3 },
+    {path:"/admin/get-info", name:"GetData" , icon:BarChart3},
+    {path:"/admin/add-schedule", name:"uploadSchedule" , icon:Upload},
   ];
 
   const handleLogout = () => {
