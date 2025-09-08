@@ -13,9 +13,13 @@ import AddResults from "./pages/admin/AddResults";
 import Contact from "./pages/Contact";
 import MyMaterials from "./pages/dashboard/MyMaterials";
 import Dashboard from "./pages/dashboard/Dashboard";
+
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import SuccessStories from "./pages/SuccessStories";
 import ResourcesBlog from "./pages/ResourcesBlog";
+
+import AdminDashboard from "./pages/admin/admindashboard";
+
 
 // Create wrapper components for protected routes
 const PrivateRoute = ({ children }) => {

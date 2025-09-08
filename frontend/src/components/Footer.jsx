@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#043D3B] text-white relative rounded-t-2xl">
+    <footer className="bg-[#1c5250] text-white relative rounded-t-2xl">
       <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
         {/* Left Section */}
         <div>
