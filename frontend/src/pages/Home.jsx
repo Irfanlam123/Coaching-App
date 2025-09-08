@@ -14,7 +14,7 @@ const teamMembers = [
   {
     name: "Jaismin Ara",
     role: "Sponsor Team",
-    image: "",
+    image: "./src/assets/mam1.jpeg",
     social: { linkedin: "#", twitter: "#", github: "#" },
   },
   {
