@@ -58,13 +58,10 @@ export default function FounderStory() {
             With this vision, he continues to create opportunities, guidance, and a
             brighter future for students across the community.
           </p>
-          <div className="mt-6">
-            <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#043D3B] via-emerald-600 to-teal-500 text-white font-semibold shadow-xl hover:scale-105 transition-transform duration-300">
-              🚀 Connect with Founder
-            </button>
-          </div>
+         
+          
         </div>
       </div>
     </section>
-  );
+  );
 }
