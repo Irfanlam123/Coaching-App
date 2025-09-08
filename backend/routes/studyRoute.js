@@ -1,28 +1,29 @@
+// routes/studyRoute.js
 const express = require("express");
-const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const {
-  uploadMaterial,
-  getMaterials,
-  downloadMaterial,
-} = require("../controllers/studyController");
+const { uploadMaterial, getMaterials, deleteMaterial } = require("../controllers/studyController");
 
-// Multer storage setup
+const router = express.Router();
+
+// ✅ Multer config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploads/"); // uploads folder me save hoga
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + path.extname(file.originalname)); // unique filename
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
+});
 
-// Routes
+// ✅ Routes
 router.post("/upload", upload.single("pdfFile"), uploadMaterial);
 router.get("/", getMaterials);
-router.get("/download/:id", downloadMaterial);
+router.delete("/:id", deleteMaterial);
 
 module.exports = router;
