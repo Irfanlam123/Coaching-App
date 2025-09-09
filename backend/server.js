@@ -19,14 +19,14 @@ app.use(cors());
 app.use(express.json());
 
 // Static folder for uploaded files (PDFs, Images, etc.)
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
 app.use("/api/admin", require("./routes/admin"));     // Admin routes
 app.use("/api/student", require("./routes/student")); // Student routes
 app.use("/api/materials", studyMaterialRoutes);       // Study material routes
 app.use("/api/services", serviceRoutes);              // Services routes
-app.use("/api/timetable", timeTableRoutes);           // TimeTable routes
+app.use("/api/notifications", require("./routes/timeTableRoutes"));
 
 // Test route
 app.get("/", (req, res) => {

@@ -18,6 +18,7 @@ import ResourcesBlog from "./pages/ResourcesBlog";
 import FounderStory from "./pages/SuccessStories";
 import GetInfo from "./pages/admin/getInfo";
 import AddSchedule from "./pages/admin/addShedule";
+import ShowSchedule from "./pages/showSchedule";
 
 
 // Create wrapper components for protected routes
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "story", element: <FounderStory/> },
       { path: "blog", element: <ResourcesBlog /> },
+      { path: "show-schedule", element: <ShowSchedule /> },
 
       // Auth
       { path: "login", element: <Login /> },

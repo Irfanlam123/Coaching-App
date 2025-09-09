@@ -35,7 +35,15 @@ const Home = () => {
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-[#043D3B] opacity-10"></div>
         <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-[#043D3B] opacity-10"></div>
-
+        <div className="flex  justify-center mb-5">
+          <h1>Get your test schedule Update </h1>
+          <Link
+            to="/show-schedule"
+            className="bg-green-800 rounded-lg text-white px-5 py-2"
+          >
+            Notification
+          </Link>
+        </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <span className="text-[#043D3B] font-semibold text-lg mb-2 block">

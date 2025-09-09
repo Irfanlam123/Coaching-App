@@ -1,25 +1,17 @@
 const express = require("express");
-const multer = require("multer");
-const path = require("path");
-const { uploadTimeTable, getAllTimeTables, getTimeTableByClass } = require("../controllers/timeTableController");
+const {
+  createNotification,
+  getAllNotifications,
+  getNotificationsByClass,
+  deleteNotification,
+} = require("../controllers/timeTableController");
 
 const router = express.Router();
 
-// Multer setup for image upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage });
-
-// Routes
-router.post("/upload", upload.single("timetableImage"), uploadTimeTable); // upload image
-router.get("/", getAllTimeTables); // get all timetables
-router.get("/:className", getTimeTableByClass); // get timetable by class
+// ✅ Routes
+router.post("/", createNotification);               // Create notification
+router.get("/", getAllNotifications);               // Get all notifications
+router.get("/class/:className", getNotificationsByClass); // Get notifications by class
+router.delete("/:id", deleteNotification);          // Delete by ID
 
 module.exports = router;

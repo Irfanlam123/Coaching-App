@@ -1,53 +1,79 @@
-const TimeTable = require("../models/timetable");
+const Notification = require("../models/timetable");
 
-// Upload timetable
-const uploadTimeTable = async (req, res) => {
+// Create Notification
+const createNotification = async (req, res) => {
   try {
-    const { className } = req.body;
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded" });
+    const { className, subject, testDate, testTime, description } = req.body;
+
+    if (!className || !subject || !testDate || !testTime) {
+      return res.status(400).json({ message: "All required fields must be provided" });
     }
 
-    const newTimeTable = new TimeTable({
+    // 🔹 Auto set expireAt (1 day after testDate)
+    const expireAt = new Date(testDate);
+    expireAt.setDate(expireAt.getDate() + 1);
+
+    const newNotification = new Notification({
       className,
-      imageUrl: `/uploads/${req.file.filename}`,
+      subject,
+      testDate,
+      testTime,
+      description,
+      expireAt,
     });
 
-    await newTimeTable.save();
-    res.status(201).json({ message: "TimeTable uploaded successfully", newTimeTable });
+    await newNotification.save();
+    res.status(201).json({ message: "Notification created successfully", newNotification });
   } catch (error) {
-    res.status(500).json({ message: "Error uploading timetable", error });
+    res.status(500).json({ message: "Error creating notification", error });
   }
 };
 
-// Get all timetables
-const getAllTimeTables = async (req, res) => {
+// Get All Notifications
+const getAllNotifications = async (req, res) => {
   try {
-    const timeTables = await TimeTable.find();
-    res.status(200).json(timeTables);
+    const notifications = await Notification.find().sort({ testDate: 1 });
+    res.status(200).json(notifications);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching timetables", error });
+    res.status(500).json({ message: "Error fetching notifications", error });
   }
 };
 
-// Get timetable by class
-const getTimeTableByClass = async (req, res) => {
+// Get Notifications by Class
+const getNotificationsByClass = async (req, res) => {
   try {
     const { className } = req.params;
-    const timetable = await TimeTable.findOne({ className });
+    const notifications = await Notification.find({ className }).sort({ testDate: 1 });
 
-    if (!timetable) {
-      return res.status(404).json({ message: "No timetable found for this class" });
+    if (!notifications || notifications.length === 0) {
+      return res.status(404).json({ message: "No notifications found for this class" });
     }
 
-    res.status(200).json(timetable);
+    res.status(200).json(notifications);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching timetable", error });
+    res.status(500).json({ message: "Error fetching notifications", error });
+  }
+};
+
+// Delete Notification by ID (optional manual delete)
+const deleteNotification = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedNotification = await Notification.findByIdAndDelete(id);
+
+    if (!deletedNotification) {
+      return res.status(404).json({ message: "Notification not found" });
+    }
+
+    res.status(200).json({ message: "Notification deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting notification", error });
   }
 };
 
 module.exports = {
-  uploadTimeTable,
-  getAllTimeTables,
-  getTimeTableByClass,
+  createNotification,
+  getAllNotifications,
+  getNotificationsByClass,
+  deleteNotification,
 };
