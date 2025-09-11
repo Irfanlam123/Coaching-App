@@ -1,34 +1,45 @@
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { useAuth } from "./context/AuthContext";
+import AdminSidebar from "./pages/admin/AdminSidebar";
+import UserSidebar from "./pages/User/UserSidebar";
+import Navbar from "./components/Navbar"
 import Footer from "./components/Footer";
-import DashboardSidebar from "./components/DashboardSidebar";
-import react from "react";
-import { Toaster } from "react-hot-toast";
+function App() {
+  const { user, logout } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = react.useState(false);
+  const handleSidebarToggle = () => setSidebarOpen(!sidebarOpen);
+  const handleSidebarClose = () => setSidebarOpen(false);
 
   return (
-    <div className="relative min-h-screen flex flex-col">
-      <Toaster position="top-right" reverseOrder={false} />
-
+    <div className="relative">
       {/* Navbar */}
-      <header className="sticky top-0 z-50 shadow-lg">
-        <Navbar onDashboardToggle={() => setIsSidebarOpen(true)} />
-      </header>
+      <Navbar onDashboardToggle={handleSidebarToggle} />
 
-      {/* Sidebar */}
-      <DashboardSidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+      {/* Conditional Sidebar */}
+      {user && user.role === "admin" && (
+        <AdminSidebar
+          isOpen={sidebarOpen}
+          onClose={handleSidebarClose}
+          onLogout={logout}
+        />
+      )}
+      {user && user.role === "user" && (
+        <UserSidebar
+          isOpen={sidebarOpen}
+          onClose={handleSidebarClose}
+          onLogout={logout}
+        />
+      )}
 
-      {/* Main */}
-      <main className="flex-1 p-4">
+      {/* Main Content */}
+      <div className="">
         <Outlet />
-      </main>
-
-      <Footer />
+        <Footer/>
+      </div>
     </div>
   );
 }
+
+export default App;

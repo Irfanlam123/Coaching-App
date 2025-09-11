@@ -1,36 +1,25 @@
-// src/router.jsx
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
+
+// Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Services  from "./pages/Services";
+import Services from "./pages/Services";
 import StudyMaterials from "./pages/StudyMaterials";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Results from "./pages/dashboard/Results";
+import Results from "./pages/User/Results";
+import MyMaterials from "./pages/User/MyMaterials";
 import UploadMaterials from "./pages/admin/UploadMaterials";
 import AddResults from "./pages/admin/AddResults";
 import Contact from "./pages/Contact";
-import MyMaterials from "./pages/dashboard/MyMaterials";
-import Dashboard from "./pages/dashboard/Dashboard";
-import AdminDashboard from "./pages/admin/admindashboard";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import ResourcesBlog from "./pages/ResourcesBlog";
 import FounderStory from "./pages/SuccessStories";
-import GetInfo from "./pages/admin/getInfo";
+import GetInfo from "./pages/admin/GetInfo";
+import ShowSchedule from "./pages/ShowSchedule";
+import UserDashboard from "./components/Dashboard/UserDashboard";
 import AddSchedule from "./pages/admin/addShedule";
-import ShowSchedule from "./pages/showSchedule";
-
-
-// Create wrapper components for protected routes
-const PrivateRoute = ({ children }) => {
-  // This will be handled by the Dashboard component itself
-  return children;
-};
-
-const AdminRoute = ({ children }) => {
-  // This will be handled by the AdminDashboard component itself
-  return children;
-};
 
 const router = createBrowserRouter([
   {
@@ -42,7 +31,7 @@ const router = createBrowserRouter([
       { path: "services", element: <Services /> },
       { path: "study-materials", element: <StudyMaterials /> },
       { path: "contact", element: <Contact /> },
-      { path: "story", element: <FounderStory/> },
+      { path: "story", element: <FounderStory /> },
       { path: "blog", element: <ResourcesBlog /> },
       { path: "show-schedule", element: <ShowSchedule /> },
 
@@ -50,42 +39,34 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
 
-      // User Dashboard - protection handled in Dashboard component
+      // User Dashboard
       {
-        path: "dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        ),
+        path: "user",
+        element: <UserDashboard />,
         children: [
-          { index: true, element: <Navigate to="/dashboard/results" replace /> },
+          { index: true, element: <Navigate to="results" replace /> },
           { path: "results", element: <Results /> },
           { path: "my-materials", element: <MyMaterials /> },
         ],
       },
 
-      // Admin routes - protection handled in AdminDashboard component
+      // Admin Dashboard
       {
         path: "admin",
-        element: (
-          <AdminRoute>
-            <AdminDashboard />
-          </AdminRoute>
-        ),
+        element: <AdminDashboard />,
         children: [
-          { index: true, element: <Navigate to="/admin/upload-materials" replace /> },
+          { index: true, element: <Navigate to="upload-materials" replace /> },
           { path: "upload-materials", element: <UploadMaterials /> },
           { path: "add-results", element: <AddResults /> },
-           { path: "get-info", element: <GetInfo/> },
-            { path: "add-schedule", element: <AddSchedule/> },
+          { path: "get-info", element: <GetInfo /> },
+          { path: "add-schedule", element: <AddSchedule /> },
         ],
       },
 
-      // Catch all route - redirect to home
+      // Catch all route
       { path: "*", element: <Navigate to="/" replace /> },
     ],
   },
 ]);
 
-export default router;
+export default router;
