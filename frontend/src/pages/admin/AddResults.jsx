@@ -62,7 +62,7 @@ export default function AddResults() {
     : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen mt-10 bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
       {/* Background Elements */}
       <div className="absolute top-20 right-10 w-16 h-16 bg-blue-200 rounded-full opacity-20 animate-float"></div>
       <div className="absolute bottom-20 left-10 w-20 h-20 bg-indigo-200 rounded-full opacity-30 animate-float animation-delay-2000"></div>

@@ -82,7 +82,7 @@ const StudyMaterials = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#043D3B]/5 to-[#043D3B]/10 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen mt-10 bg-gradient-to-br from-[#043D3B]/5 to-[#043D3B]/10 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div 

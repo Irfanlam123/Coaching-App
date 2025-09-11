@@ -1,4 +1,3 @@
-// routes/studyRoute.js
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
@@ -6,13 +5,13 @@ const { uploadMaterial, getMaterials, deleteMaterial } = require("../controllers
 
 const router = express.Router();
 
-// ✅ Multer config
+// ✅ Multer Config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // uploads folder me save hoga
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // unique filename
+    cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 
