@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { X, Upload, Award, User, Calendar, LogOut, ChevronRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const AdminSidebar = ({ isOpen, onClose, onLogout, position = "right" }) => {
+const AdminSidebar = ({ isOpen, onClose, onLogout }) => {
   const location = useLocation();
+  const navigate = useNavigate(); // Add this
 
   const menuItems = [
     { path: "/admin/upload-materials", label: "Upload Materials", icon: <Upload size={18} /> },
@@ -24,13 +25,19 @@ const AdminSidebar = ({ isOpen, onClose, onLogout, position = "right" }) => {
     visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }
   };
 
+  const handleLogout = () => {
+    onLogout();      // clear user/auth state
+    onClose();       // close sidebar
+    navigate("/");   // redirect to Home
+  };
+
   return (
     <>
       {/* Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className="fixed inset-0 bg-black/40 z-40"
+            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -43,7 +50,7 @@ const AdminSidebar = ({ isOpen, onClose, onLogout, position = "right" }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className={`fixed top-0 ${position}-0 h-full w-72 bg-gradient-to-b from-[#065666] to-[#0a7c74] shadow-2xl p-6 flex flex-col justify-between z-50`}
+            className="fixed top-0 right-0 h-full w-72 bg-gradient-to-b from-[#065666] to-[#0a7c74] shadow-2xl p-6 flex flex-col justify-between z-50"
             variants={sidebarVariants}
             initial="hidden"
             animate="visible"
@@ -105,7 +112,7 @@ const AdminSidebar = ({ isOpen, onClose, onLogout, position = "right" }) => {
             {/* Logout */}
             <motion.div className="pt-4" variants={itemVariants}>
               <button
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="flex items-center gap-3 w-full px-4 py-3 rounded-xl bg-white/20 hover:bg-red-500 text-white font-medium transition-all duration-200"
               >
                 <LogOut size={18} />

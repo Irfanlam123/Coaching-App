@@ -133,7 +133,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Partnerships and Collaborations</h3>
-                  <p className="text-sm mt-1 text-white/90">collabs@forhelp.com</p>
+                  <p className="text-sm mt-1 text-white/90">viraamvaani1@gmail.com</p>
                 </div>
               </div>
             </motion.div>

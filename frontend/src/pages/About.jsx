@@ -196,45 +196,7 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Team Section */}
-        {/* <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Our <span className="text-[#043D3B]">Team</span>
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <motion.div 
-                key={item}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-[#043D3B] to-teal-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
-                  {item}
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Team Member {item}</h3>
-                <p className="text-gray-600 mb-4">Role Description</p>
-                <div className="flex justify-center space-x-4">
-                  <a href="#" className="text-gray-500 hover:text-[#043D3B] transition-colors duration-300">
-                    <FaLinkedin className="text-xl" />
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-[#043D3B] transition-colors duration-300">
-                    <FaGithub className="text-xl" />
-                  </a>
-                  <a href="#" className="text-gray-500 hover:text-[#043D3B] transition-colors duration-300">
-                    <FaTwitter className="text-xl" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div> */}
+      
 
         <Contact />
       </div>

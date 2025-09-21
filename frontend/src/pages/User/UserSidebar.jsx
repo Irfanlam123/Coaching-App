@@ -1,14 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { IconBook, IconFileCertificate, IconLogout } from "@tabler/icons-react";
+import { IconFileCertificate, IconLogout } from "@tabler/icons-react";
 import { X } from "lucide-react";
 
-export default function UserSidebar({ isOpen, onClose, onLogout, position = "right" }) {
+export default function UserSidebar({ isOpen, onClose, onLogout }) {
   const location = useLocation();
 
   const menuItems = [
     { path: "/user/results", label: "Results", icon: <IconFileCertificate size={18} /> },
-    { path: "/user/my-materials", label: "My Materials", icon: <IconBook size={18} /> },
   ];
 
   if (!isOpen) return null;
@@ -17,13 +16,13 @@ export default function UserSidebar({ isOpen, onClose, onLogout, position = "rig
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/40 z-40"
+        className="fixed inset-0 bg-black/40 z-40 lg:hidden"
         onClick={onClose}
       />
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 ${position}-0 h-full w-72 bg-gradient-to-b from-[#065666] to-[#0a7c74] shadow-2xl p-6 flex flex-col justify-between z-50`}
+        className="fixed top-0 right-0 h-full w-72 bg-gradient-to-b from-[#065666] to-[#0a7c74] shadow-2xl p-6 flex flex-col justify-between z-50"
       >
         {/* Close Button */}
         <button
@@ -69,7 +68,10 @@ export default function UserSidebar({ isOpen, onClose, onLogout, position = "rig
         {/* Logout */}
         <div className="pt-4">
           <button
-            onClick={onLogout}
+            onClick={() => {
+              onLogout();
+              onClose();
+            }}
             className="flex items-center gap-3 w-full px-4 py-3 rounded-xl bg-white/20 hover:bg-red-500 text-white font-medium transition-all duration-200"
           >
             <IconLogout size={18} />
