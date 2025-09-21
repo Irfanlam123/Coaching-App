@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import { FaLinkedin, FaTwitter, FaGithub, FaBell } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaGithub, FaBell, FaHeart, FaLightbulb, FaRocket, FaHandshake, FaUsers, FaBrain } from "react-icons/fa";
 
 const teamMembers = [
   {
@@ -27,6 +27,16 @@ const teamMembers = [
       github: "https://github.com/amjadkhan11",
     },
   },
+];
+
+// Core Values data (reuse from About.jsx)
+const coreValues = [
+  { icon: <FaHeart className="text-2xl text-green-700" />, title: "Passion", desc: "We love what we do and it shows in every project we deliver." },
+  { icon: <FaLightbulb className="text-2xl text-red-600" />, title: "Innovation", desc: "We constantly explore new ideas and technologies to stay ahead." },
+  { icon: <FaRocket className="text-2xl text-orange-500" />, title: "Excellence", desc: "We strive for perfection in every detail of our work." },
+  { icon: <FaHandshake className="text-2xl text-blue-500" />, title: "Collaboration", desc: "We believe in working together to achieve extraordinary results." },
+  { icon: <FaUsers className="text-2xl text-purple-500" />, title: "Community", desc: "We're committed to nurturing and growing our community." },
+  { icon: <FaBrain className="text-2xl text-teal-500" />, title: "Creativity", desc: "We approach every challenge with fresh thinking and imagination." }
 ];
 
 const Home = () => {
@@ -76,11 +86,20 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Cards placeholder */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Example card */}
-         
-          {/* Add more cards as needed */}
+        {/* Core Values Section inside Home */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {coreValues.map((value, index) => (
+            <div
+              key={index}
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center hover:bg-white/15 transition-all duration-300 border border-white/10 shadow-lg hover:shadow-2xl"
+            >
+              <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-[#043D3B] text-2xl">
+                {value.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
+              <p className="text-gray-700">{value.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
