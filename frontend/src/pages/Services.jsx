@@ -39,7 +39,7 @@ const Services = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8080/api/services/submit", {
+      const res = await axios.post("https://coaching-app-1rmb.onrender.com/api/services/submit", {
         selectedClass,
         ...formData,
       });
