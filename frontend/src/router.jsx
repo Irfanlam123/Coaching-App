@@ -16,10 +16,10 @@ import Contact from "./pages/Contact";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import ResourcesBlog from "./pages/ResourcesBlog";
 import FounderStory from "./pages/SuccessStories";
-import ShowSchedule from "./pages/ShowSchedule";
 import UserDashboard from "./components/Dashboard/UserDashboard";
 import AddSchedule from "./pages/admin/addShedule";
 import GetInfo from "./pages/admin/GetInfo";
+import ShowSchedule from "./pages/ShowSchedule";
 
 const router = createBrowserRouter([
   {
