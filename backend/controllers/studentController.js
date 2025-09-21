@@ -1,5 +1,5 @@
 const Result = require("../models/Result");
-const Student = require("../models/Student");
+const Student = require("../models/student");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
