@@ -77,7 +77,7 @@ export default function Login() {
               alt="Collaboration"
               className="rounded-2xl shadow-2xl mb-6 md:mb-8 mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md"
             />
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Welcome Back!</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Welcome To ViraamVaani!</h1>
             <p className="text-base md:text-lg lg:text-xl opacity-90">
               Sign in to continue your journey with us
             </p>

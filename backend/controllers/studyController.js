@@ -1,8 +1,11 @@
 const StudyMaterial = require("../models/study");
-const path = require("path");
+const drive = require("../utils/googleDrive");
 const fs = require("fs");
 
-// ✅ Upload Material with custom expiry OR permanent
+// Google Drive folder ID
+const FOLDER_ID = "1WkIzT_rPHlqTtv-m9bzITCvd2Le2sPFt";
+
+// ✅ Upload Material
 exports.uploadMaterial = async (req, res) => {
   try {
     const { className, subject, materialName, expiresAt } = req.body;
@@ -12,24 +15,55 @@ exports.uploadMaterial = async (req, res) => {
     }
 
     let expiryDate = null;
-
-    // Agar user ne expiry diya hai to use karo
     if (expiresAt && expiresAt !== "null") {
-      expiryDate = new Date(expiresAt); // frontend se ISO date string aayegi
+      expiryDate = new Date(expiresAt);
       if (isNaN(expiryDate)) {
         return res.status(400).json({ message: "Invalid expiry date!" });
       }
     }
 
+    // Upload file to Google Drive
+    const fileMetadata = {
+      name: req.file.originalname,
+      parents: [FOLDER_ID],
+    };
+
+    const media = {
+      mimeType: req.file.mimetype,
+      body: fs.createReadStream(req.file.path),
+    };
+
+    const response = await drive.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: "id, webViewLink, webContentLink",
+    });
+
+    // Make file public
+    await drive.permissions.create({
+      fileId: response.data.id,
+      requestBody: {
+        role: "reader",
+        type: "anyone",
+      },
+    });
+
+    // Direct download link
+    const fileLink = `https://drive.google.com/uc?id=${response.data.id}&export=download`;
+
+    // Save in MongoDB
     const newMaterial = new StudyMaterial({
       className,
       subject,
       materialName,
-      pdfFile: req.file.filename,
+      pdfFile: fileLink,
       expiresAt: expiryDate,
     });
 
     await newMaterial.save();
+
+    // Delete temp local file
+    fs.unlinkSync(req.file.path);
 
     res.status(201).json({
       message: expiryDate
@@ -39,7 +73,7 @@ exports.uploadMaterial = async (req, res) => {
     });
   } catch (error) {
     console.error("Upload Error:", error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error", error });
   }
 };
 
@@ -54,7 +88,7 @@ exports.getMaterials = async (req, res) => {
   }
 };
 
-// ✅ Delete Material (Manual Delete)
+// ✅ Delete Material
 exports.deleteMaterial = async (req, res) => {
   try {
     const { id } = req.params;
@@ -64,10 +98,11 @@ exports.deleteMaterial = async (req, res) => {
       return res.status(404).json({ message: "Material not found" });
     }
 
-    const filePath = path.join(__dirname, "../uploads", material.pdfFile);
-    fs.unlink(filePath, (err) => {
-      if (err) console.error("File delete error:", err);
-    });
+    // Delete from Google Drive
+    const fileIdMatch = material.pdfFile.match(/id=([a-zA-Z0-9_-]+)/);
+    if (fileIdMatch && fileIdMatch[1]) {
+      await drive.files.delete({ fileId: fileIdMatch[1] });
+    }
 
     res.json({ message: "Material deleted successfully" });
   } catch (error) {

@@ -7,7 +7,7 @@ export default function UploadMaterials() {
     className: "",
     subject: "",
     materialName: "",
-    expiresAt: "", // date-time string
+    expiresAt: "",
     alwaysAvailable: false,
     file: null,
   });
@@ -18,7 +18,7 @@ export default function UploadMaterials() {
     const { name, value, type, checked, files } = e.target;
 
     if (type === "checkbox") {
-      setFormData({ ...formData, [name]: checked, expiresAt: "" }); // reset expiry if alwaysAvailable
+      setFormData({ ...formData, [name]: checked, expiresAt: "" });
       return;
     }
 
@@ -37,7 +37,6 @@ export default function UploadMaterials() {
       setUploadStatus({ type: "error", message: "Please select a file!" });
       return;
     }
-
     if (!formData.alwaysAvailable && !formData.expiresAt) {
       setUploadStatus({
         type: "error",
@@ -54,9 +53,8 @@ export default function UploadMaterials() {
       data.append("className", formData.className);
       data.append("subject", formData.subject);
       data.append("materialName", formData.materialName);
-      data.append("pdfFile", formData.file);
+      data.append("pdfFile", formData.file); // ✅ must match backend "pdfFile"
 
-      // ✅ backend ke hisaab se expiry bhejna
       if (formData.alwaysAvailable) {
         data.append("expiresAt", "null");
       } else {
@@ -64,13 +62,9 @@ export default function UploadMaterials() {
       }
 
       const res = await axios.post(
-        "http://localhost:8080/api/materials/upload",
+        "https://coaching-app-1rmb.onrender.com/api/materials/upload",
         data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
 
       setUploadStatus({
@@ -80,7 +74,6 @@ export default function UploadMaterials() {
 
       console.log(res.data);
 
-      // Reset form
       setFormData({
         className: "",
         subject: "",
@@ -89,14 +82,13 @@ export default function UploadMaterials() {
         alwaysAvailable: false,
         file: null,
       });
-
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = "";
     } catch (err) {
       console.error(err);
       setUploadStatus({
         type: "error",
-        message: "Upload failed! Please try again.",
+        message: err.response?.data?.message || "Upload failed! Please try again.",
       });
     } finally {
       setIsUploading(false);
@@ -108,16 +100,14 @@ export default function UploadMaterials() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-white/20">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Class Selection */}
+            {/* Class */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaGraduationCap className="h-5 w-5 text-gray-400" />
-              </div>
+              <FaGraduationCap className="absolute left-3 top-3 text-gray-400" />
               <select
                 name="className"
                 value={formData.className}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#043D3B] focus:border-[#043D3B]"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg"
                 required
               >
                 <option value="">Select Class</option>
@@ -131,9 +121,7 @@ export default function UploadMaterials() {
 
             {/* Subject */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaBook className="h-5 w-5 text-gray-400" />
-              </div>
+              <FaBook className="absolute left-3 top-3 text-gray-400" />
               <input
                 type="text"
                 name="subject"
@@ -146,10 +134,8 @@ export default function UploadMaterials() {
             </div>
 
             {/* Material Name */}
-            <div className="relative mt-2">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                📚
-              </div>
+            <div className="relative">
+              <span className="absolute left-3 top-3">📚</span>
               <input
                 type="text"
                 name="materialName"
@@ -161,12 +147,10 @@ export default function UploadMaterials() {
               />
             </div>
 
-            {/* Expiry Date-Time OR Always Available */}
+            {/* Expiry / Always Available */}
             <div className="space-y-3">
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaClock className="h-5 w-5 text-gray-400" />
-                </div>
+                <FaClock className="absolute left-3 top-3 text-gray-400" />
                 <input
                   type="datetime-local"
                   name="expiresAt"
@@ -176,7 +160,16 @@ export default function UploadMaterials() {
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg"
                 />
               </div>
-            
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  name="alwaysAvailable"
+                  checked={formData.alwaysAvailable}
+                  onChange={handleChange}
+                  className="h-4 w-4"
+                />
+                <span>Always Available (No Expiry)</span>
+              </label>
             </div>
 
             {/* File Upload */}
@@ -200,7 +193,7 @@ export default function UploadMaterials() {
               )}
             </div>
 
-            {/* Status Message */}
+            {/* Status */}
             {uploadStatus && (
               <div
                 className={`p-4 rounded-lg ${

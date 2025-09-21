@@ -62,7 +62,7 @@ const StudyMaterials = () => {
 
   // Download PDF
   const handleDownload = (fileName) => {
-    const url = `http://localhost:8080/uploads/${fileName}`;
+    const url = `https://coaching-app-1rmb.onrender.com/uploads/${fileName}`;
     window.open(url, '_blank');
   };
 
