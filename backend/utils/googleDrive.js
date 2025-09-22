@@ -2,23 +2,23 @@ const { google } = require("googleapis");
 
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 
-// Env variable ko safely parse karo
-const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT || '{}');
+let credentials;
 
-// Check karo agar env variable missing ya invalid ho
-if (!credentials || !credentials.client_email) {
-  throw new Error(
-    "❌ GOOGLE_SERVICE_ACCOUNT env variable is missing or invalid. Please check your .env or Render environment variables."
-  );
+try {
+  credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT || "{}");
+} catch (err) {
+  throw new Error("❌ GOOGLE_SERVICE_ACCOUNT env variable is not valid JSON.");
 }
 
-// Google Auth setup
+if (!credentials.client_email || !credentials.private_key) {
+  throw new Error("❌ GOOGLE_SERVICE_ACCOUNT env variable is missing required fields.");
+}
+
 const auth = new google.auth.GoogleAuth({
-  credentials, // credentials object ab sahi hai
+  credentials,
   scopes: SCOPES,
 });
 
-// Google Drive client
 const drive = google.drive({ version: "v3", auth });
 
 module.exports = drive;
