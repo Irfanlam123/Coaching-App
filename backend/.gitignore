@@ -45,3 +45,6 @@ coverage/
 .cache/
 .pnp.*
 .eslintcache
+
+# ignore the service acount.jso file 
+service-account-key.json

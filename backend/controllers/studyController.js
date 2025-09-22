@@ -1,9 +1,6 @@
 const { Readable } = require("stream");
 const StudyMaterial = require("../models/study");
-const drive = require("../utils/googleDrive");
-
-// Google Drive folder ID
-const FOLDER_ID = "1WkIzT_rPHlqTtv-m9bzITCvd2Le2sPFt";
+const { drive, FOLDER_ID } = require("../utils/googleDrive");
 
 // ✅ Upload Material
 exports.uploadMaterial = async (req, res) => {
@@ -22,9 +19,15 @@ exports.uploadMaterial = async (req, res) => {
       }
     }
 
+    // Create a unique filename
+    const timestamp = Date.now();
+    const originalName = req.file.originalname;
+    const fileExtension = originalName.split('.').pop();
+    const fileName = `${timestamp}_${materialName.replace(/\s+/g, '_')}.${fileExtension}`;
+
     // Convert Buffer to Stream
     const fileMetadata = {
-      name: `${Date.now()}_${req.file.originalname}`,
+      name: fileName,
       parents: [FOLDER_ID]
     };
     

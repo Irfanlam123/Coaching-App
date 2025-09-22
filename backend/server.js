@@ -26,8 +26,8 @@ app.use(
   })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // ----------------- ROUTES ----------------- //
 app.use("/api/admin", require("./routes/admin"));
@@ -49,7 +49,9 @@ setInterval(async () => {
 }, 60 * 60 * 1000); // Run every hour
 
 // Run cleanup immediately on startup
-cleanupExpiredMaterials();
+setTimeout(() => {
+  cleanupExpiredMaterials();
+}, 5000);
 
 // ----------------- START SERVER ----------------- //
 const PORT = process.env.PORT || 8080;
