@@ -2,9 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
 const connectDB = require("./config/db");
-const StudyMaterial = require("./models/study");
+const { cleanupExpiredMaterials } = require("./controllers/studyController");
 
 // Import routes
 const studyMaterialRoutes = require("./routes/studyRoute");
@@ -30,9 +29,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve uploaded files statically
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 // ----------------- ROUTES ----------------- //
 app.use("/api/admin", require("./routes/admin"));
 app.use("/api/student", require("./routes/student"));
@@ -46,29 +42,14 @@ app.get("/", (req, res) => {
 });
 
 // ----------------- BACKGROUND CLEANUP ----------------- //
-// Delete expired study materials every 1 minute
+// Delete expired study materials every hour
 setInterval(async () => {
-  try {
-    const now = new Date();
-    const expiredMaterials = await StudyMaterial.find({
-      expiresAt: { $ne: null, $lt: now },
-    });
+  console.log("🔄 Running cleanup job for expired materials...");
+  await cleanupExpiredMaterials();
+}, 60 * 60 * 1000); // Run every hour
 
-    for (let material of expiredMaterials) {
-      // Delete file from local uploads folder
-      const filePath = path.join(__dirname, "uploads", material.pdfFile);
-      fs.unlink(filePath, (err) => {
-        if (err) console.error("🗑 Auto delete file error:", err);
-      });
-
-      // Delete from MongoDB
-      await StudyMaterial.findByIdAndDelete(material._id);
-      console.log(`🗑 Deleted expired material: ${material.materialName}`);
-    }
-  } catch (error) {
-    console.error("🛑 Cleanup job error:", error);
-  }
-}, 60 * 1000);
+// Run cleanup immediately on startup
+cleanupExpiredMaterials();
 
 // ----------------- START SERVER ----------------- //
 const PORT = process.env.PORT || 8080;

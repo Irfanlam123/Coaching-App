@@ -96,7 +96,7 @@ export default function UploadMaterials() {
   };
 
   return (
-    <div className="min-h-screen mt-10 bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <div className="min-h-screen  bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-white/20">
           <form onSubmit={handleSubmit} className="space-y-6">
