@@ -6,7 +6,7 @@ const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
 
 const auth = new google.auth.GoogleAuth({
-  credentials,  // yaha credentials object aa gya
+  credentials,  // ab sahi credentials object hai
   scopes: SCOPES,
 });
 
