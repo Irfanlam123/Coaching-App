@@ -1,5 +1,6 @@
 const StudyMaterial = require("../models/study");
 const drive = require("../utils/googleDrive");
+const { Readable } = require("stream"); // ✅ Import Readable stream
 
 // Google Drive folder ID
 const FOLDER_ID = "1WkIzT_rPHlqTtv-m9bzITCvd2Le2sPFt";
@@ -17,9 +18,12 @@ exports.uploadMaterial = async (req, res) => {
       if (isNaN(expiryDate)) return res.status(400).json({ message: "Invalid expiry date!" });
     }
 
-    // Upload file to Google Drive
+    // Upload file to Google Drive (convert Buffer to stream)
     const fileMetadata = { name: req.file.originalname, parents: [FOLDER_ID] };
-    const media = { mimeType: req.file.mimetype, body: Buffer.from(req.file.buffer) };
+    const media = { 
+      mimeType: req.file.mimetype, 
+      body: Readable.from(req.file.buffer) // ✅ Fixed: Buffer → Stream
+    };
 
     const response = await drive.files.create({
       resource: fileMetadata,
@@ -37,7 +41,13 @@ exports.uploadMaterial = async (req, res) => {
     const fileLink = `https://drive.google.com/uc?id=${response.data.id}&export=download`;
 
     // Save to MongoDB
-    const newMaterial = new StudyMaterial({ className, subject, materialName, pdfFile: fileLink, expiresAt: expiryDate });
+    const newMaterial = new StudyMaterial({
+      className,
+      subject,
+      materialName,
+      pdfFile: fileLink,
+      expiresAt: expiryDate
+    });
     await newMaterial.save();
 
     res.status(201).json({
@@ -71,7 +81,8 @@ exports.deleteMaterial = async (req, res) => {
     if (!material) return res.status(404).json({ message: "Material not found" });
 
     // Optionally, delete from Google Drive as well
-    await drive.files.delete({ fileId: material.pdfFile.split("id=")[1].split("&")[0] });
+    const fileId = material.pdfFile.split("id=")[1].split("&")[0];
+    await drive.files.delete({ fileId });
 
     res.json({ message: "Material deleted successfully" });
   } catch (error) {
