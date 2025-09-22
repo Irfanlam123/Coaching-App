@@ -31,7 +31,7 @@ export default function AddResults() {
 
     try {
       const res = await axios.post(
-        "https://coaching-app-1rmb.onrender.com/api/admin/results/add",
+        "https://coaching-app-41n5.onrender.com/api/admin/results/add",
         { results: [formData] }
       );
 

@@ -20,9 +20,9 @@ connectDB();
 // CORS setup
 app.use(
   cors({
-    origin: [
+    origin: [     
       "http://localhost:5173", // your local frontend
-      "https://coaching-app-1rmb.onrender.com", // deployed frontend
+      "https://coaching-app-41n5.onrender.com", // deployed frontend
     ],
     credentials: true,
   })

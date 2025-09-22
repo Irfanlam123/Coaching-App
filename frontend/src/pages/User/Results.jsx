@@ -33,7 +33,7 @@ const Results = () => {
     const fetchResult = async () => {
       try {
         const res = await axios.get(
-          `https://coaching-app-1rmb.onrender.com/api/admin/results/${userEmail}`
+          `https://coaching-app-41n5.onrender.com/api/admin/results/${userEmail}`
         );
         setResult(res.data);
         setLoading(false);

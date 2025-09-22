@@ -62,7 +62,7 @@ export default function UploadMaterials() {
       }
 
       const res = await axios.post(
-        "https://coaching-app-1rmb.onrender.com/api/materials/upload",
+        "https://coaching-app-41n5.onrender.com/api/materials/upload",
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

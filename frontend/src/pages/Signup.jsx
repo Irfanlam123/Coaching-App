@@ -33,7 +33,7 @@ export default function Signup() {
       setIsLoading(true);
 
       // ✅ Backend API call
-      const res = await axios.post("https://coaching-app-1rmb.onrender.com/api/student/signup", {
+      const res = await axios.post("https://coaching-app-41n5.onrender.com/api/student/signup", {
         name,
         email,
         password,

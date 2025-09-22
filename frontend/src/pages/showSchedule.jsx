@@ -11,7 +11,7 @@ const ShowSchedule = () => {
   useEffect(() => {
     const fetchSchedules = async () => {
       try {
-        const res = await axios.get("https://coaching-app-1rmb.onrender.com/api/notifications");
+        const res = await axios.get("https://coaching-app-41n5.onrender.com/api/notifications");
         setSchedules(res.data); // Assuming your backend returns array of notifications
         setLoading(false);
       } catch (err) {

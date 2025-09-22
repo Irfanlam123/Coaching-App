@@ -10,7 +10,7 @@ const GetInfo = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await axios.get('https://coaching-app-1rmb.onrender.com/api/services');
+        const res = await axios.get('https://coaching-app-41n5.onrender.com/api/services');
         setServices(res.data.data);
         setLoading(false);
       } catch (err) {

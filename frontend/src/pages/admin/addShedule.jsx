@@ -21,7 +21,7 @@ const AddSchedule = () => {
     setMessage("");
 
     try {
-      const res = await fetch("https://coaching-app-1rmb.onrender.com/api/notifications", {
+      const res = await fetch("https://coaching-app-41n5.onrender.com/api/notifications", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
