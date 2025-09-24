@@ -5,7 +5,7 @@
   import Home from "./pages/Home";
   import About from "./pages/About";
   import Services from "./pages/Services";
-  import StudyMaterials from "./pages/StudyMaterials";
+  import StudyMaterials from "../src/pages/StudyMaterials";
   import Login from "./pages/Login";
   import Signup from "./pages/Signup";
   import Results from "./pages/User/Results";
