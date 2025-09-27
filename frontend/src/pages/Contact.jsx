@@ -1,6 +1,6 @@
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaClock, FaHandshake } from "react-icons/fa";
 import { motion } from "framer-motion";
-
+import Cont from "../assets/contact.jpeg" 
 export default function Contact() {
   // Animation variants
   const containerVariants = {
@@ -118,7 +118,7 @@ export default function Contact() {
               className="overflow-hidden rounded-xl shadow-lg"
             >
               <img
-                src="./src/assets/contact.jpeg"
+                src={Cont}
                 alt="Helping Hands"
                 className="w-full h-80 object-cover"
               />
@@ -218,13 +218,20 @@ export default function Contact() {
           className="bg-white rounded-xl shadow-lg p-6 mt-8"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Find Us Here</h2>
-          <div className="h-64 bg-gradient-to-br from-[#208884]/20 to-teal-700/20 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <FaMapMarkerAlt className="text-4xl text-[#208884] mx-auto mb-2" />
-              <p className="text-gray-700">Chausa Bazar Chausa</p>
-              <p className="text-sm text-gray-500 mt-1">View on Google Maps</p>
-            </div>
-          </div>
+         <a 
+  href="https://maps.app.goo.gl/8iafLwxPE4cXb7Ub8" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <div className="h-64 bg-gradient-to-br from-[#208884]/20 to-teal-700/20 rounded-lg flex items-center justify-center">
+    <div className="text-center">
+      <FaMapMarkerAlt className="text-4xl text-[#208884] mx-auto mb-2" />
+      <p className="text-gray-700">Chausa Bazar Chausa</p>
+      <p className="text-sm text-gray-500 mt-1">View on Google Maps</p>
+    </div>
+  </div>
+</a>
+
         </motion.div>
       </div>
     </div>

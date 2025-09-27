@@ -2,25 +2,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
+import Amjad from "../assets/amja.jpg"
+import found from "../assets/ceo.jpg"
+import Spons from "../assets/mam.jpeg"
+
+
 import { FaLinkedin, FaTwitter, FaGithub, FaBell, FaHeart, FaLightbulb, FaRocket, FaHandshake, FaUsers, FaBrain } from "react-icons/fa";
 
 const teamMembers = [
   {
     name: "MD Adil",
     role: "Founder & CEO |Viraam Vaani|",
-    image: "./src/assets/ceo.jpg",
+    image: found,
     social: { linkedin: "#", twitter: "#", github: "#" },
   },
   {
     name: "Jaismin Ara",
     role: "Sponsor Team",
-    image: "./src/assets/mam.jpeg",
+    image: Spons,
     social: { linkedin: "#", twitter: "#", github: "#" },
   },
   {
     name: "Amjad Ansari",
     role: "Developer",
-    image: "./src/assets/amja.jpg",
+    image: Amjad,
     social: {
       linkedin: "https://www.linkedin.com/in/amjad-ansari31",
       twitter: "#",

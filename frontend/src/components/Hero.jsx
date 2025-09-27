@@ -1,7 +1,7 @@
 // src/components/Hero.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-
+import vid from "../assets/backvi.mp4"
 const Hero = () => {
   return (
     <section className="relative bg-slate-50 rounded-md py-6 text-gray-900 overflow-hidden">
@@ -16,7 +16,7 @@ const Hero = () => {
           poster="data:image/gif,AAAA"
         >
           <source 
-            src=".\src\assets\backvi.mp4"   
+            src= {vid}  
             type="video/mp4" 
           />
           Your browser does not support the video tag.
