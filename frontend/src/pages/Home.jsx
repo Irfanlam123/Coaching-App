@@ -13,19 +13,19 @@ const teamMembers = [
   {
     name: "MD Adil",
     role: "Founder & CEO |Viraam Vaani|",
-    image: found,
+    image: {found},
     social: { linkedin: "#", twitter: "#", github: "#" },
   },
   {
     name: "Jaismin Ara",
     role: "Sponsor Team",
-    image: Spons,
+    image: {Spons},
     social: { linkedin: "#", twitter: "#", github: "#" },
   },
   {
     name: "Amjad Ansari",
     role: "Developer",
-    image: Amjad,
+    image: {Amjad},
     social: {
       linkedin: "https://www.linkedin.com/in/amjad-ansari31",
       twitter: "#",
