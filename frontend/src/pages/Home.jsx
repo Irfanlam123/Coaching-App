@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import Amjad from "../assets/Amja.jpg";
+// import Amjad from "../assets/Amja.jpg";
 import found from "../assets/ceo.jpg";
 import Spons from "../assets/mam.jpeg";
 
@@ -25,7 +25,7 @@ const teamMembers = [
   {
     name: "Amjad Ansari",
     role: "Developer",
-    image: Amjad,
+    // image: Amjad,
     social: {
       linkedin: "https://www.linkedin.com/in/amjad-ansari31",
       twitter: "#",
