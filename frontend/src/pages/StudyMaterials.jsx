@@ -37,7 +37,7 @@ const StudyMaterials = () => {
     const fetchMaterials = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:8080/api/materials');
+        const res = await axios.get('https://coaching-app-akr2.onrender.com/api/materials');
         setMaterials(res.data);
         setLoading(false);
       } catch (error) {
@@ -62,7 +62,7 @@ const StudyMaterials = () => {
 
   // Download PDF
   const handleDownload = (fileName) => {
-    const url = `https://coaching-app-41n5.onrender.com/uploads/${fileName}`;
+    const url = `https://coaching-app-akr2.onrender.com/uploads/${fileName}`;
     window.open(url, '_blank');
   };
 

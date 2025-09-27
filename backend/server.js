@@ -1,58 +1,23 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const connectDB = require("./config/db");
+const studyMaterialRoutes = require("./routes/studyRoute");
 const { cleanupExpiredMaterials } = require("./controllers/studyController");
 
-// Import routes
-const studyMaterialRoutes = require("./routes/studyRoute");
-const serviceRoutes = require("./routes/servicesRoutes");
-const timeTableRoutes = require("./routes/timeTableRoutes");
-
 const app = express();
+connectDB();
 
-// ----------------- DATABASE ----------------- //
-connectDB(); // Connect to MongoDB
+app.use(cors({ origin: "*", credentials: true }));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-// ----------------- MIDDLEWARE ----------------- //
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173", // local frontend
-      "https://coaching-app-41n5.onrender.com", // deployed frontend
-    ],
-    credentials: true,
-  })
-);
-
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
-// ----------------- ROUTES ----------------- //
-app.use("/api/admin", require("./routes/admin"));
-app.use("/api/student", require("./routes/student"));
 app.use("/api/materials", studyMaterialRoutes);
-app.use("/api/services", serviceRoutes);
-app.use("/api/notifications", timeTableRoutes);
+app.get("/", (req, res) => res.send("✅ API is running..."));
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("✅ API is running...");
-});
+// Cleanup expired materials every hour
+setInterval(cleanupExpiredMaterials, 60 * 60 * 1000);
+setTimeout(cleanupExpiredMaterials, 5000);
 
-// ----------------- BACKGROUND CLEANUP ----------------- //
-// Delete expired study materials every hour
-setInterval(async () => {
-  console.log("🔄 Running cleanup job for expired materials...");
-  await cleanupExpiredMaterials();
-}, 60 * 60 * 1000); // Run every hour
-
-// Run cleanup immediately on startup
-setTimeout(() => {
-  cleanupExpiredMaterials();
-}, 5000);
-
-// ----------------- START SERVER ----------------- //
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

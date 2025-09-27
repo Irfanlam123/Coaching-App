@@ -1,77 +1,60 @@
 const { google } = require("googleapis");
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
 
-// Google Drive folder ID
+// Folder ID jahan file upload karna hai
 const FOLDER_ID = "16ObQgGBcQ7OEV1gaRCBtiPmcZAxo4Vwm";
 
-let auth;
+// OAuth2 client setup
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
+);
 
-try {
-  if (process.env.GOOGLE_SERVICE_ACCOUNT) {
-    // Production: use environment variable
-    console.log("🔑 Using environment variable for Google Auth");
-    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
-    auth = new google.auth.GoogleAuth({
-      credentials,
-      scopes: ["https://www.googleapis.com/auth/drive"],
-    });
-  } else {
-    // Development: use local JSON file
-    console.log("📁 Using local file for Google Auth");
-    const KEYFILE_PATH = path.join(__dirname, "service-account-key.json");
-    auth = new google.auth.GoogleAuth({
-      keyFile: KEYFILE_PATH,
-      scopes: ["https://www.googleapis.com/auth/drive"],
-    });
-  }
-} catch (error) {
-  console.error("❌ Error setting up Google Auth:", error.message);
-  auth = null;
+// Scopes for Drive
+const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
+
+// Generate auth URL (visit this once to get token)
+function generateAuthUrl() {
+  return oauth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: SCOPES,
+  });
 }
 
-const drive = auth ? google.drive({ version: "v3", auth }) : null;
-
-// Test authentication
-if (auth) {
-  auth.getClient()
-    .then(() => console.log("✅ Google Drive authentication successful"))
-    .catch((err) => console.error("❌ Google Drive authentication failed:", err.message));
-} else {
-  console.warn("⚠️ Google Auth not configured - file uploads will not work");
+// Set tokens manually after first login
+function setTokens(tokens) {
+  oauth2Client.setCredentials(tokens);
 }
 
-// Function to upload file
-async function uploadFile(filePath, fileName) {
-  if (!drive) {
-    throw new Error("Google Drive is not configured");
-  }
+// Drive instance
+const drive = google.drive({ version: "v3", auth: oauth2Client });
 
-  const fileMetadata = {
-    name: fileName,
-    parents: [FOLDER_ID],
-  };
-
-  const media = {
-    mimeType: "application/octet-stream",
-    body: fs.createReadStream(filePath),
-  };
-
+// Upload function
+async function uploadFile(buffer, fileName, mimeType) {
   try {
-    const response = await drive.files.create({
+    const fileMetadata = { name: fileName, parents: [FOLDER_ID] };
+    const media = { mimeType, body: buffer };
+
+    const res = await drive.files.create({
       resource: fileMetadata,
       media: media,
-      fields: "id, name",
+      fields: "id",
     });
-    console.log(`✅ File uploaded: ${response.data.name} (ID: ${response.data.id})`);
-    return response.data;
-  } catch (error) {
-    console.error("❌ Upload failed:", error.message);
-    throw error;
+
+    const fileId = res.data.id;
+
+    await drive.permissions.create({
+      fileId,
+      requestBody: { role: "reader", type: "anyone" },
+    });
+
+    return `https://drive.google.com/uc?id=${fileId}&export=download`;
+  } catch (err) {
+    console.error("❌ Upload failed:", err.message);
+    throw err;
   }
 }
 
-// Example usage:
-// uploadFile("./test.txt", "test.txt");
-
-module.exports = { drive, FOLDER_ID, uploadFile };
+module.exports = { generateAuthUrl, setTokens, uploadFile };

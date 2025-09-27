@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       // 🔹 Student login via API
-      const res = await axios.post("http://localhost:8080/api/student/login", {
+      const res = await axios.post("https://coaching-app-akr2.onrender.com/api/student/login", {
         email: identifier,
         password,
       });
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
   // ✅ Signup function (only for students)
   const signup = async (name, email, password) => {
     try {
-      const res = await axios.post("http://localhost:8080/api/student/signup", {
+      const res = await axios.post("https://coaching-app-akr2.onrender.com/api/student/signup", {
         name,
         email,
         password,
