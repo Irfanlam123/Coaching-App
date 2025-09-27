@@ -7,8 +7,8 @@ const path = require("path");
 // Routes
 const studyMaterialRoutes = require("./routes/studyRoute");
 const timeTableRoutes = require("./routes/timeTableRoutes");
-const serviceRoutes = require("./routes/servicesRoutes");
-const studentRoutes = require("./routes/student");
+const serviceRoutes = require("./routes/servicesRoutes"); // fixed name
+const studentRoutes = require("./routes/student"); // fixed name
 
 const { cleanupExpiredMaterials } = require("./controllers/studyController");
 
@@ -28,19 +28,26 @@ app.use("/api/notifications", timeTableRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/students", studentRoutes);
 
-// Serve frontend if deployed
+// Cleanup expired materials every hour
+setInterval(cleanupExpiredMaterials, 60 * 60 * 1000);
+setTimeout(cleanupExpiredMaterials, 5000);
+
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build"))); // Assuming React build in client/build
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  const frontendBuildPath = path.join(__dirname, "client", "build");
+
+  // Make sure the folder exists
+  app.use(express.static(frontendBuildPath));
+
+  // All unknown GET requests go to React
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api")) return next(); // skip API routes
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
   });
 } else {
   app.get("/", (req, res) => res.send("✅ API is running..."));
 }
 
-// Cleanup expired materials every hour
-setInterval(cleanupExpiredMaterials, 60 * 60 * 1000);
-setTimeout(cleanupExpiredMaterials, 5000);
-
+// Start server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
