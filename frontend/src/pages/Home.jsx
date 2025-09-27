@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import Amjad from "../assets/amja.jpg"
+import Amjad from "../assets/Amja.jpg"
 import found from "../assets/ceo.jpg"
 import Spons from "../assets/mam.jpeg"
 
