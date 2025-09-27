@@ -5,10 +5,13 @@ const connectDB = require("./config/db");
 const path = require("path");
 
 // Routes
+
+
+
 const studyMaterialRoutes = require("./routes/studyRoute");
 const timeTableRoutes = require("./routes/timeTableRoutes");
 const serviceRoutes = require("./routes/servicesRoutes"); // fixed name
-const studentRoutes = require("./routes/student"); // fixed name
+const studentRoutes = require("./routes/studentRoutes"); // fixed name
 
 const { cleanupExpiredMaterials } = require("./controllers/studyController");
 
