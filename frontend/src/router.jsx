@@ -19,8 +19,8 @@
   import UserDashboard from "./components/Dashboard/UserDashboard";
   import AddSchedule from "./pages/admin/addShedule";
 
-  import ShowSchedule from "./pages/ShowSchedule";
-import GetInfo from "./pages/admin/GetInfo";
+import ShowSchedule from './pages/showSchedule.jsx';
+import GetInfo from "./pages/admin/getInfo.jsx";
 
   const router = createBrowserRouter([
     {
