@@ -30,9 +30,10 @@ export default function AddResults() {
     setSubmitStatus(null);
 
     try {
+      // 🔹 POST request to backend
       const res = await axios.post(
         "https://coaching-app-akr2.onrender.com/api/admin/results/add",
-        { results: [formData] }
+        formData
       );
 
       setSubmitStatus({
@@ -43,6 +44,7 @@ export default function AddResults() {
 
       console.log("Response:", res.data);
 
+      // Reset form
       setFormData({
         studentEmail: "",
         className: "",
@@ -64,10 +66,7 @@ export default function AddResults() {
 
   const percentage =
     formData.score && formData.totalMarks
-      ? (
-          (parseFloat(formData.score) / parseFloat(formData.totalMarks)) *
-          100
-        ).toFixed(1)
+      ? ((parseFloat(formData.score) / parseFloat(formData.totalMarks)) * 100).toFixed(1)
       : null;
 
   return (
@@ -165,19 +164,6 @@ export default function AddResults() {
               </div>
             </div>
 
-            {/* Percentage */}
-            {percentage && (
-              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-                <p className="text-[#0A5C59] font-medium text-center">
-                  Percentage: <span className="font-bold">{percentage}%</span>
-                  {percentage >= 80 && " 🎉 Excellent!"}
-                  {percentage >= 60 && percentage < 80 && " 👍 Good!"}
-                  {percentage >= 40 && percentage < 60 && " ✔️ Average"}
-                  {percentage < 40 && " ❌ Needs Improvement"}
-                </p>
-              </div>
-            )}
-
             {/* Status */}
             {submitStatus && (
               <div
@@ -214,39 +200,16 @@ export default function AddResults() {
             </button>
           </form>
         </div>
-
-        {/* Guidelines */}
-        <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-            <span className="w-2 h-2 bg-[#0A5C59] rounded-full mr-2"></span>
-            Result Guidelines
-          </h3>
-          <ul className="text-sm text-gray-600 space-y-2">
-            <li>• Ensure the student email is registered in the system</li>
-            <li>• Double-check scores before submission</li>
-            <li>• Results cannot be edited once submitted</li>
-            <li>• Students will receive automatic notifications</li>
-          </ul>
-        </div>
       </div>
 
       {/* Animations */}
       <style jsx>{`
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
         }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animation-delay-2000 { animation-delay: 2s; }
       `}</style>
     </div>
   );

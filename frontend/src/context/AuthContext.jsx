@@ -40,11 +40,14 @@ export const AuthProvider = ({ children }) => {
         }
       }
 
-      // 🔹 Student login via API
-      const res = await axios.post("https://coaching-app-akr2.onrender.com/api/student/login", {
-        email: identifier,
-        password,
-      });
+      // 🔹 Student login via API (FIXED endpoint → /api/students/login)
+      const res = await axios.post(
+        "https://coaching-app-akr2.onrender.com/api/students/login",
+        {
+          email: identifier,
+          password,
+        }
+      );
 
       if (!res.data || !res.data.token) {
         return { success: false, message: res.data?.msg || "Login failed" };
@@ -71,14 +74,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Signup function (only for students)
+  // ✅ Signup function (only for students) → FIXED endpoint
   const signup = async (name, email, password) => {
     try {
-      const res = await axios.post("https://coaching-app-akr2.onrender.com/api/student/signup", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://coaching-app-akr2.onrender.com/api/students/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
 
       if (!res.data || !res.data.token) {
         return { success: false, message: res.data?.msg || "Signup failed" };

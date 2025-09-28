@@ -8,7 +8,9 @@ const studyMaterialRoutes = require("./routes/studyRoute");
 const timeTableRoutes = require("./routes/timeTableRoutes");
 const serviceRoutes = require("./routes/servicesRoutes");
 const studentRoutes = require("./routes/studentRoutes");
+const resultRoutes = require("./routes/resultRoutes"); // 🔹 Add result routes
 
+// Controllers
 const { cleanupExpiredMaterials } = require("./controllers/studyController");
 
 const app = express();
@@ -25,7 +27,8 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use("/api/materials", studyMaterialRoutes);
 app.use("/api/notifications", timeTableRoutes);
 app.use("/api/services", serviceRoutes);
-app.use("/api/students", studentRoutes);
+app.use("/api/students", studentRoutes); // ✅ student signup/login
+app.use("/api/admin/results", resultRoutes); // 🔹 admin result routes
 
 // Cleanup expired materials every hour
 setInterval(cleanupExpiredMaterials, 60 * 60 * 1000);
