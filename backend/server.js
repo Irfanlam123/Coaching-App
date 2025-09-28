@@ -4,11 +4,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 // Routes
-const studyMaterialRoutes = require("./routes/studyRoute");
-const timeTableRoutes = require("./routes/timeTableRoutes");
-const serviceRoutes = require("./routes/servicesRoutes");
 const studentRoutes = require("./routes/studentRoutes");
-const resultRoutes = require("./routes/resultRoutes"); // 🔹 Add result routes
+const adminRoutes = require("./routes/admin");
 
 // Controllers
 const { cleanupExpiredMaterials } = require("./controllers/studyController");
@@ -24,13 +21,10 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
 // API Routes
-app.use("/api/materials", studyMaterialRoutes);
-app.use("/api/notifications", timeTableRoutes);
-app.use("/api/services", serviceRoutes);
-app.use("/api/students", studentRoutes); // ✅ student signup/login
-app.use("/api/admin/results", resultRoutes); // 🔹 admin result routes
+app.use("/api/students", studentRoutes);
+app.use("/api/admin", adminRoutes);
 
-// Cleanup expired materials every hour
+// Cleanup expired materials every hour (if you have this feature)
 setInterval(cleanupExpiredMaterials, 60 * 60 * 1000);
 setTimeout(cleanupExpiredMaterials, 5000);
 

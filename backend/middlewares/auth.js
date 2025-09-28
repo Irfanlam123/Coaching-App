@@ -1,11 +1,9 @@
-// backend/middleware/auth.js
 const jwt = require("jsonwebtoken");
 
 // Admin auth
 const adminAuth = (req, res, next) => {
   const token = req.header("x-auth-token");
   if (!token) return res.status(401).json({ msg: "No token, authorization denied" });
-
   try {
     const decoded = jwt.verify(token, "adminSecret123");
     req.admin = decoded;
@@ -19,7 +17,6 @@ const adminAuth = (req, res, next) => {
 const studentAuth = (req, res, next) => {
   const token = req.header("x-auth-token");
   if (!token) return res.status(401).json({ msg: "No token, authorization denied" });
-
   try {
     const decoded = jwt.verify(token, "studentSecret123");
     req.student = decoded;

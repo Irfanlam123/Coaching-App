@@ -19,6 +19,9 @@ export default function AddResults() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
+  // ✅ Admin token from localStorage (after login)
+  const adminToken = localStorage.getItem("adminToken");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (submitStatus) setSubmitStatus(null);
@@ -29,11 +32,24 @@ export default function AddResults() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    if (!adminToken) {
+      setSubmitStatus({
+        type: "error",
+        message: "❌ Admin not logged in. Please login first.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // 🔹 POST request to backend
       const res = await axios.post(
         "https://coaching-app-akr2.onrender.com/api/admin/results/add",
-        formData
+        formData,
+        {
+          headers: {
+            "x-auth-token": adminToken,
+          },
+        }
       );
 
       setSubmitStatus({
@@ -53,7 +69,7 @@ export default function AddResults() {
       });
     } catch (err) {
       const errorMessage =
-        err.response?.data?.message || "Error adding result. Please try again.";
+        err.response?.data?.msg || "Error adding result. Please try again.";
       setSubmitStatus({
         type: "error",
         message: "❌ " + errorMessage,
@@ -63,11 +79,6 @@ export default function AddResults() {
       setIsSubmitting(false);
     }
   };
-
-  const percentage =
-    formData.score && formData.totalMarks
-      ? ((parseFloat(formData.score) / parseFloat(formData.totalMarks)) * 100).toFixed(1)
-      : null;
 
   return (
     <div className="min-h-screen mt-10 bg-gradient-to-br from-[#043D3B] to-[#0A5C59] py-8 px-4 sm:px-6 lg:px-8 relative">
@@ -92,7 +103,6 @@ export default function AddResults() {
         {/* Form */}
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-white/20">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <FaUserGraduate className="h-5 w-5 text-gray-400" />
@@ -108,7 +118,6 @@ export default function AddResults() {
               />
             </div>
 
-            {/* Class */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <FaBook className="h-5 w-5 text-gray-400" />
@@ -129,7 +138,6 @@ export default function AddResults() {
               </select>
             </div>
 
-            {/* Score & Total Marks */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -164,7 +172,6 @@ export default function AddResults() {
               </div>
             </div>
 
-            {/* Status */}
             {submitStatus && (
               <div
                 className={`p-4 rounded-lg ${
@@ -180,7 +187,6 @@ export default function AddResults() {
               </div>
             )}
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -202,7 +208,6 @@ export default function AddResults() {
         </div>
       </div>
 
-      {/* Animations */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
