@@ -33,7 +33,7 @@ export default function Signup() {
 
       // ✅ Fixed URL (plural students)
       const res = await axios.post(
-        "https://coaching-app-akr2.onrender.com/api/students/signup",
+        "http://localhost:8080/api/students/signup",
         {
           name,
           email,
