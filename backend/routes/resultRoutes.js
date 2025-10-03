@@ -1,19 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {
-  addResult,
-  getAllResults,
-  getStudentResults,
-} = require("../controllers/resultController");
-const { adminAuth } = require("../middlewares/auth"); // admin middleware
+const resultController = require("../controllers/resultController");
 
-// Admin adds result
-router.post("/add", adminAuth, addResult);
-
-// Get all results (admin)
-router.get("/all", adminAuth, getAllResults);
-
-// Get results of a specific student (admin)
-router.get("/:studentEmail", adminAuth, getStudentResults);
+// Routes
+router.post("/", resultController.createResult); // Add new result
+router.get("/", resultController.getAllResults); // Get all results (Admin)
+router.get("/student/:email", resultController.getResultsByEmail); // Get results by student email
+router.put("/:id", resultController.updateResult); // Update result by ID
+router.delete("/:id", resultController.deleteResult); // Delete result by ID
 
 module.exports = router;

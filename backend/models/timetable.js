@@ -29,11 +29,11 @@ const notificationSchema = new mongoose.Schema(
       default: "",
     },
 
-    // 🔹 Auto-delete field
+    // Auto-delete using TTL (1 day after testDate)
     expireAt: {
       type: Date,
       required: true,
-      index: { expires: 0 }, // TTL index
+      index: { expires: 0 }, 
     },
   },
   { timestamps: true }

@@ -8,10 +8,16 @@ const {
 
 const router = express.Router();
 
-// ✅ Routes
-router.post("/", createNotification);               // Create notification
-router.get("/", getAllNotifications);               // Get all notifications
-router.get("/class/:className", getNotificationsByClass); // Get notifications by class
-router.delete("/:id", deleteNotification);          // Delete by ID
+// Create Notification
+router.post("/", createNotification);
+
+// Get All Notifications
+router.get("/", getAllNotifications);
+
+// Get Notifications by Class
+router.get("/class/:className", getNotificationsByClass);
+
+// Delete Notification
+router.delete("/:id", deleteNotification);
 
 module.exports = router;

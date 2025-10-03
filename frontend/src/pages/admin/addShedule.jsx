@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// ✅ API Base URL (env me rakho, fallback localhost hoga)
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
 const AddSchedule = () => {
   const [formData, setFormData] = useState({
     className: "",
@@ -10,6 +13,7 @@ const AddSchedule = () => {
   });
 
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,9 +23,10 @@ const AddSchedule = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
+    setLoading(true);
 
     try {
-      const res = await fetch("https://coaching-app-akr2.onrender.com/api/notifications", {
+      const res = await fetch(`${API_URL}/api/notifications`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -39,10 +44,13 @@ const AddSchedule = () => {
           description: "",
         });
       } else {
-        setMessage(`❌ Error: ${data.message}`);
+        setMessage(`❌ Error: ${data.message || "Something went wrong"}`);
       }
     } catch (error) {
+      console.error("Add schedule error:", error);
       setMessage("❌ Server error, please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -153,9 +161,10 @@ const AddSchedule = () => {
           {/* Submit Button */}
           <button
             type="submit"
+            disabled={loading}
             className="w-full py-3 sm:py-3.5 rounded-lg font-semibold text-white bg-gradient-to-r from-[#043D3B] to-[#0A5C59] hover:opacity-90 hover:scale-[1.02] active:scale-95 transition-all shadow-lg text-sm sm:text-base"
           >
-            Add Schedule
+            {loading ? "Submitting..." : "Add Schedule"}
           </button>
         </form>
       </div>

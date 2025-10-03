@@ -6,10 +6,12 @@ const createNotification = async (req, res) => {
     const { className, subject, testDate, testTime, description } = req.body;
 
     if (!className || !subject || !testDate || !testTime) {
-      return res.status(400).json({ message: "All required fields must be provided" });
+      return res
+        .status(400)
+        .json({ message: "All required fields must be provided" });
     }
 
-    // 🔹 Auto set expireAt (1 day after testDate)
+    // Auto set expireAt (1 day after testDate)
     const expireAt = new Date(testDate);
     expireAt.setDate(expireAt.getDate() + 1);
 
@@ -23,9 +25,12 @@ const createNotification = async (req, res) => {
     });
 
     await newNotification.save();
-    res.status(201).json({ message: "Notification created successfully", newNotification });
+    res
+      .status(201)
+      .json({ message: "Notification created successfully", newNotification });
   } catch (error) {
-    res.status(500).json({ message: "Error creating notification", error });
+    console.error("Error creating notification:", error);
+    res.status(500).json({ message: "Error creating notification", error: error.message });
   }
 };
 
@@ -35,7 +40,8 @@ const getAllNotifications = async (req, res) => {
     const notifications = await Notification.find().sort({ testDate: 1 });
     res.status(200).json(notifications);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching notifications", error });
+    console.error("Error fetching notifications:", error);
+    res.status(500).json({ message: "Error fetching notifications", error: error.message });
   }
 };
 
@@ -51,11 +57,12 @@ const getNotificationsByClass = async (req, res) => {
 
     res.status(200).json(notifications);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching notifications", error });
+    console.error("Error fetching notifications by class:", error);
+    res.status(500).json({ message: "Error fetching notifications", error: error.message });
   }
 };
 
-// Delete Notification by ID (optional manual delete)
+// Delete Notification by ID
 const deleteNotification = async (req, res) => {
   try {
     const { id } = req.params;
@@ -67,7 +74,8 @@ const deleteNotification = async (req, res) => {
 
     res.status(200).json({ message: "Notification deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Error deleting notification", error });
+    console.error("Error deleting notification:", error);
+    res.status(500).json({ message: "Error deleting notification", error: error.message });
   }
 };
 

@@ -10,15 +10,10 @@ export default function Navbar({ onDashboardToggle }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Add scroll effect for navbar
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
@@ -29,18 +24,20 @@ export default function Navbar({ onDashboardToggle }) {
   ];
 
   return (
-    <nav className={`bg-gradient-to-r from-[#043D3B] to-[#0A5C59] text-white shadow-xl fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'py-2 shadow-2xl' : 'py-0'
-    }`}>
+    <nav
+      className={`bg-gradient-to-r from-[#043D3B] to-[#0A5C59] text-white shadow-xl fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "py-2 shadow-2xl" : "py-0"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo with animation */}
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <img 
-                className="rounded-3xl w-8 h-8 object-contain transform group-hover:rotate-12 transition-transform duration-300" 
-                src={Logo} 
-                alt="Viraam Vaani Logo" 
+              <img
+                className="rounded-3xl w-8 h-8 object-contain transform group-hover:rotate-12 transition-transform duration-300"
+                src={Logo}
+                alt="Viraam Vaani Logo"
               />
             </div>
             <span className="text-xl font-bold">
@@ -84,7 +81,7 @@ export default function Navbar({ onDashboardToggle }) {
                 <LogIn className="w-4 h-4" />
                 Signin
               </Link>
-            )}      
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -112,24 +109,16 @@ export default function Navbar({ onDashboardToggle }) {
           </div>
         </div>
 
-        {/* Mobile Side Menu with enhanced animation */}
+        {/* Mobile Side Menu */}
         {mobileMenuOpen && (
           <>
-            {/* Animated Overlay */}
-            <div 
+            <div
               className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm animate-fade-in"
               onClick={() => setMobileMenuOpen(false)}
             />
-            
-            {/* Animated Side Menu */}
+
             <div className="md:hidden fixed top-0 right-0 h-full w-80 bg-gradient-to-b from-[#022725] to-[#0A5C59] shadow-2xl z-50 transform transition-transform duration-500 ease-out animate-slide-in-right">
               <div className="p-6 h-full flex flex-col relative overflow-hidden">
-                {/* Animated Background Pattern */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-                  <div className="absolute bottom-20 right-10 w-24 h-24 bg-blue-300 rounded-full animate-ping"></div>
-                </div>
-
                 {/* Close Button */}
                 <div className="flex justify-end mb-6 z-10">
                   <button
@@ -140,7 +129,7 @@ export default function Navbar({ onDashboardToggle }) {
                   </button>
                 </div>
 
-                {/* Logo in Mobile Menu */}
+                {/* Logo in Mobile */}
                 <div className="flex items-center space-x-2 mb-8 z-10 transform hover:scale-105 transition-transform duration-300">
                   <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-lg">
                     <img className="rounded-3xl w-10 h-10 object-contain" src={Logo} alt="Logo" />
@@ -151,7 +140,6 @@ export default function Navbar({ onDashboardToggle }) {
                   </span>
                 </div>
 
-                {/* Navigation Links with staggered animation */}
                 <div className="flex-1 space-y-3 z-10">
                   {navItems.map((item, index) => (
                     <Link
@@ -171,7 +159,6 @@ export default function Navbar({ onDashboardToggle }) {
                   ))}
                 </div>
 
-                {/* Mobile Login/Register Button */}
                 {!user && (
                   <div className="pt-6 border-t border-[#0A5C59] z-10">
                     <Link
@@ -185,7 +172,6 @@ export default function Navbar({ onDashboardToggle }) {
                   </div>
                 )}
 
-                {/* Footer in Mobile Menu */}
                 <div className="pt-6 text-center text-blue-200 text-sm z-10">
                   <p>Empowering Education</p>
                   <p className="text-xs mt-1">© 2024 Viraam Vaani</p>
@@ -196,45 +182,18 @@ export default function Navbar({ onDashboardToggle }) {
         )}
       </div>
 
-      {/* Add custom animations to global CSS */}
-      <style jsx>{`
-        @keyframes slideInRight {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slide-in-right {
-          animation: slideInRight 0.5s ease-out;
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.3s ease-out;
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.5s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+      {/* Custom animations */}
+      <style>
+        {`
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .animate-slide-in-right { animation: slideInRight 0.5s ease-out; }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
+        `}
+      </style>
     </nav>
   );
 }
